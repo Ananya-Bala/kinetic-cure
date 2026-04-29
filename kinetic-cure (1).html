@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kinetic Cure — Dance & Mental Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--beige:#F5F1E8;--yellow:#F4D03F;--rust:#C0562D;--black:#111111;--white:#FFFFFF;--gray:#8a8680;--lgray:#e8e4db;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--beige);color:var(--black);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:998;opacity:.4;}
+
+/* PAGE SYSTEM */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+.page-enter{animation:pgIn .45s ease forwards;}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 4rem;transition:all .4s ease;}
+nav.scrolled,nav.dark{background:rgba(17,17,17,.97);backdrop-filter:blur(12px);padding:1rem 4rem;box-shadow:0 1px 0 rgba(255,255,255,.07);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;letter-spacing:.04em;color:var(--white);text-transform:uppercase;cursor:pointer;text-decoration:none;background:none;border:none;}
+.nav-logo span{color:var(--yellow);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a,.nav-links button,.nav-links .nbtn{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;transition:color .3s;padding:0;}
+.nav-links a:hover,.nav-links button:hover,.nav-links .nbtn:hover,.nav-links a.active,.nav-links button.active{color:var(--yellow);}
+.nav-links .dropdown{position:relative;}
+.dropdown-menu{display:none;position:absolute;top:160%;left:50%;transform:translateX(-50%);background:var(--black);border:1px solid rgba(255,255,255,.1);padding:.7rem 0;min-width:140px;z-index:400;}
+.dropdown:hover .dropdown-menu{display:block;}
+.dropdown-menu button{display:block;width:100%;padding:.5rem 1.2rem;text-align:left;font-size:.68rem !important;color:rgba(255,255,255,.55) !important;letter-spacing:.1em;}
+.dropdown-menu button:hover{color:var(--yellow) !important;}
+.nav-cta{background:var(--yellow) !important;color:var(--black) !important;padding:.55rem 1.4rem !important;font-weight:600 !important;}
+.nav-cta:hover{background:var(--rust) !important;color:var(--white) !important;}
+
+/* HERO */
+#hero-section{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
+.hero-left::before{content:'';position:absolute;inset:0;background:url('images/IMG_5444.jpg') center/cover;opacity:.38;transition:transform 8s ease;}
+.hero-left:hover::before{transform:scale(1.04);}
+.hero-left::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.85) 30%,rgba(17,17,17,.3) 100%);}
+.hero-lc{position:relative;z-index:2;}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.5rem;font-weight:500;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,5rem);line-height:1.05;color:var(--white);font-weight:900;margin-bottom:1.2rem;}
+.hero-title em{font-style:italic;color:var(--yellow);}
+.hero-sub{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.65);max-width:380px;margin-bottom:2.5rem;font-weight:300;}
+.btn-primary{display:inline-flex;align-items:center;gap:.7rem;background:var(--yellow);color:var(--black);padding:1rem 2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;text-decoration:none;border:none;cursor:pointer;transition:all .3s ease;font-family:'DM Sans',sans-serif;}
+.btn-primary:hover{background:var(--rust);color:var(--white);transform:translateX(4px);}
+.hero-right{background:var(--beige);display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 5rem 5rem;position:relative;}
+.hero-brand{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2vw,1.6rem);letter-spacing:.08em;font-weight:400;color:var(--rust);margin-bottom:.5rem;font-style:italic;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,7rem);line-height:.95;font-weight:300;font-style:italic;color:var(--black);margin-bottom:3rem;letter-spacing:-.02em;}
+.hero-stats{display:flex;gap:3rem;margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--lgray);}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--rust);display:block;}
+.stat-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);font-weight:500;}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:5;}
+.scroll-ind span{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);}
+.scroll-line{width:1px;height:50px;background:var(--rust);animation:sp 1.8s ease-in-out infinite;}
+@keyframes sp{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.4}}
+
+/* PREMISE */
+#premise{display:grid;grid-template-columns:1fr 1fr;background:var(--beige);min-height:70vh;}
+.premise-text{padding:6rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;}
+.premise-text::before{content:'\00B6';font-family:'Playfair Display',serif;font-size:8rem;color:rgba(192,86,45,.05);position:absolute;top:3rem;right:2rem;line-height:1;pointer-events:none;}
+.premise-label{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:2rem;display:block;}
+.premise-p1{font-size:.9rem;line-height:1.9;color:var(--gray);margin-bottom:1.8rem;font-weight:300;padding-left:1.2rem;border-left:2px solid var(--lgray);}
+.premise-p1::first-letter{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:900;color:var(--rust);float:left;line-height:.8;margin:.05em .12em 0 0;}
+.premise-p2{font-size:1.05rem;line-height:1.75;color:var(--black);font-weight:400;}
+.premise-p2 strong{font-weight:700;color:var(--rust);font-family:'Playfair Display',serif;font-style:italic;}
+.premise-img{position:relative;overflow:hidden;}
+.premise-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) contrast(1.05);display:block;}
+.premise-img::after{content:'';position:absolute;inset:0;background:rgba(17,17,17,.15);}
+
+/* PULL QUOTE BAND */
+.pull-quote-band{background:var(--black);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.pull-quote-band::before{content:'';position:absolute;inset:0;background:url('images/PHOTO-2026-04-30-03-42-07.jpg') center/cover;opacity:.12;}
+.pqb-inner{position:relative;z-index:2;max-width:780px;margin:0 auto;}
+.pq-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-style:italic;color:var(--white);line-height:1.3;font-weight:300;}
+.pq-text::before{content:'\201C';color:var(--yellow);font-size:1.5em;line-height:0;vertical-align:-.25em;margin-right:.1em;}
+.pq-text::after{content:'\201D';color:var(--yellow);font-size:1.5em;line-height:0;vertical-align:-.25em;margin-left:.1em;}
+.pq-attr{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:2rem;display:block;}
+
+/* WHY */
+#why{background:var(--black);padding:7rem 4rem;text-align:center;position:relative;overflow:hidden;}
+#why::before{content:'MOVEMENT';position:absolute;font-family:'Playfair Display',serif;font-size:18vw;font-weight:900;color:rgba(255,255,255,.025);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:.05em;white-space:nowrap;}
+.why-kicker{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:2rem;font-weight:500;}
+.why-headline{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.8rem);font-weight:900;color:var(--white);line-height:1.15;max-width:800px;margin:0 auto 1.5rem;}
+.why-headline em{font-style:italic;color:var(--yellow);}
+.why-body{font-size:1rem;line-height:1.8;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto;font-weight:300;}
+.why-strip{display:flex;margin-top:5rem;border-top:1px solid rgba(255,255,255,.08);}
+.wsi{flex:1;padding:2.5rem 2rem;border-right:1px solid rgba(255,255,255,.08);text-align:left;}
+.wsi:last-child{border-right:none;}
+.strip-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--rust);opacity:.7;display:block;margin-bottom:.5rem;line-height:1;}
+.strip-title{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:500;margin-bottom:.4rem;}
+.strip-body{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.6;font-weight:300;}
+
+/* STORIES GRID */
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;}
+.sk{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:.6rem;}
+.st{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;line-height:1.1;}
+.sl{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);text-decoration:none;border-bottom:1px solid var(--lgray);padding-bottom:.2rem;transition:color .3s,border-color .3s;white-space:nowrap;cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;font-family:'DM Sans',sans-serif;}
+.sl:hover{color:var(--rust);border-color:var(--rust);}
+.stories-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:auto auto;gap:1.5px;background:var(--black);}
+.sc{background:var(--beige);overflow:hidden;cursor:pointer;position:relative;}
+.sc:first-child{grid-row:span 2;}
+.card-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:grayscale(30%);transition:transform .6s ease,filter .4s;}
+.sc:first-child .card-img{aspect-ratio:3/4;}
+.sc:hover .card-img{transform:scale(1.05);filter:grayscale(0%);}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:2rem;}
+.sc:hover .card-overlay{opacity:1;}
+.overlay-read{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);font-weight:600;}
+.card-body{padding:1.6rem 1.8rem 2rem;}
+.card-tag{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:.5rem;}
+.card-title{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.4rem);font-weight:700;line-height:1.25;margin-bottom:.7rem;transition:color .3s;}
+.sc:hover .card-title{color:var(--rust);}
+.card-exc{font-size:.82rem;line-height:1.65;color:var(--gray);font-weight:300;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.sc:first-child .card-body{padding:2rem 2.5rem 2.5rem;}
+.sc:first-child .card-title{font-size:clamp(1.4rem,2.5vw,2rem);}
+
+/* IMAGE EDITORIAL STRIP */
+.editorial-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;background:var(--black);}
+.es-item{position:relative;overflow:hidden;}
+.es-item img{width:100%;height:320px;object-fit:cover;display:block;filter:grayscale(20%);transition:transform .6s ease,filter .4s;}
+.es-item:hover img{transform:scale(1.04);filter:grayscale(0%);}
+.es-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(17,17,17,.9),transparent);transform:translateY(10px);opacity:0;transition:all .4s;}
+.es-item:hover .es-overlay{opacity:1;transform:translateY(0);}
+.es-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:600;}
+
+/* ABOUT HERO */
+.about-hero{background:var(--black);min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 5rem 4rem;position:relative;overflow:hidden;}
+.about-hero::before{content:'';position:absolute;inset:0;background:url('images/PHOTO-2026-04-30-03-42-07.jpg') center/cover;opacity:.28;}
+.about-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.92) 40%,rgba(17,17,17,.4) 100%);}
+.ah-inner{position:relative;z-index:2;}
+.pey{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);font-weight:600;margin-bottom:1rem;display:block;}
+.ptitle{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,6rem);font-weight:900;color:var(--white);line-height:.95;}
+.ptitle em{font-style:italic;color:var(--yellow);}
+
+/* MISSION SPLIT */
+.mission-split{display:grid;grid-template-columns:1fr 1fr;background:var(--beige);}
+.mi{position:relative;overflow:hidden;min-height:500px;}
+.mi img{width:100%;height:100%;object-fit:cover;filter:sepia(15%) contrast(1.1);display:block;}
+.mi::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(192,86,45,.3) 100%);}
+.mt{padding:5rem;display:flex;flex-direction:column;justify-content:center;}
+.ml{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:1.2rem;display:block;}
+.mh{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:.5rem;}
+.mr{width:48px;height:2px;background:var(--rust);margin:1.5rem 0;}
+.mb{font-size:.92rem;line-height:1.9;color:#444;font-weight:300;max-width:440px;}
+
+/* METHODOLOGY */
+.methodology{padding:6rem 4rem;background:var(--white);}
+.meth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--lgray);}
+.meth-card{background:var(--white);padding:2rem 1.8rem;position:relative;overflow:hidden;cursor:default;transition:transform .3s,box-shadow .3s;}
+.meth-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08);z-index:1;}
+.meth-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--rust);transform:scaleX(0);transition:transform .4s;transform-origin:left;}
+.meth-card:hover::before{transform:scaleX(1);}
+.mc-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--rust);opacity:.12;line-height:1;margin-bottom:.6rem;display:block;}
+.mc-icon{font-size:1.4rem;margin-bottom:.8rem;display:block;}
+.mc-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.5rem;}
+.mc-body{font-size:.78rem;color:var(--gray);line-height:1.6;font-weight:300;}
+
+/* FACULTY */
+.faculty{background:var(--black);padding:5rem 4rem;text-align:center;}
+.fac-cards{display:flex;gap:3rem;justify-content:center;margin-top:3rem;flex-wrap:wrap;}
+.fac-card{max-width:280px;}
+.fac-av{width:80px;height:80px;border-radius:50%;background:var(--rust);margin:0 auto 1.2rem;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--white);border:3px solid rgba(244,208,63,.3);}
+.fac-role{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:600;display:block;margin-bottom:.5rem;}
+.fac-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.fac-desc{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.6;font-weight:300;}
+
+/* DOWNLOADS */
+.downloads{background:var(--yellow);padding:5rem 4rem;text-align:center;}
+.downloads h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;color:var(--black);margin-bottom:.5rem;}
+.dl-sub{font-size:.9rem;color:rgba(17,17,17,.6);margin-bottom:3rem;font-weight:300;}
+.dl-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.btn-dl{display:inline-flex;align-items:center;gap:.8rem;background:var(--black);color:var(--white);padding:1.1rem 2rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-decoration:none;cursor:pointer;border:2px solid var(--black);font-family:'DM Sans',sans-serif;transition:all .3s;}
+.btn-dl:hover{background:transparent;color:var(--black);}
+
+/* HUMAN ELEMENT */
+.human-el{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.human-el::before{content:'';position:absolute;inset:0;background:url('images/PHOTO-2026-04-30-03-42-07.jpg') center 30%/cover;filter:blur(3px) brightness(.35);}
+.hei{position:relative;z-index:2;text-align:center;padding:3rem;max-width:700px;}
+.hq{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-style:italic;color:var(--white);line-height:1.25;font-weight:300;}
+.hq::before{content:'\201C';color:var(--yellow);}
+.hq::after{content:'\201D';color:var(--yellow);}
+.ha{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:1.5rem;display:block;}
+
+/* AI FREE */
+.ai-free{background:var(--beige);padding:2.5rem 5rem;display:flex;align-items:center;gap:2rem;border-top:1px solid var(--lgray);}
+.ai-free-line{width:32px;height:1px;background:var(--rust);flex-shrink:0;}
+.ai-free-text{font-size:.78rem;font-style:italic;color:var(--gray);line-height:1.6;font-weight:300;max-width:600px;}
+
+/* STORIES PAGES */
+.stories-hero{background:var(--black);min-height:45vh;display:flex;align-items:flex-end;padding:8rem 5rem 4rem;position:relative;overflow:hidden;}
+.stories-hero::before{content:'';position:absolute;inset:0;background:url('images/IMG_5444.jpg') center/cover;opacity:.2;}
+.stories-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.9) 40%,transparent 100%);}
+.shi{position:relative;z-index:2;}
+.cycle-badge{display:inline-block;background:var(--rust);color:var(--white);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:.4rem .9rem;margin-bottom:1.2rem;}
+.spt{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:900;color:var(--white);line-height:1;margin-bottom:1rem;}
+.sps{font-size:1rem;color:rgba(255,255,255,.55);max-width:540px;font-weight:300;line-height:1.7;}
+.story-feature{padding:6rem 5rem;background:var(--beige);}
+.fe{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:1rem;}
+.ft{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:2rem;max-width:700px;}
+.fb{font-size:1rem;line-height:1.95;color:#3a3a3a;max-width:680px;font-weight:300;}
+.fb p{margin-bottom:1.5rem;}
+.fb p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--rust);float:left;line-height:.8;margin:.05em .12em 0 0;}
+
+/* STORY PULL QUOTE */
+.story-pull{background:var(--black);padding:4rem 5rem;display:flex;align-items:center;gap:3rem;}
+.spl{width:3px;height:80px;background:var(--yellow);flex-shrink:0;}
+.spq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-style:italic;color:var(--white);line-height:1.4;font-weight:300;}
+
+/* STORY IMAGE EDITORIAL */
+.story-img-block{position:relative;overflow:hidden;height:420px;}
+.story-img-block img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(15%);}
+.story-img-block::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(17,17,17,.6) 100%);}
+.story-img-caption{position:absolute;bottom:1.5rem;right:2rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);z-index:2;}
+
+/* CYCLE TABS */
+.cycle-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.1);padding:0 5rem;background:var(--black);}
+.ctab{padding:1rem 2rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .3s;}
+.ctab.active{color:var(--yellow);border-color:var(--yellow);}
+.ctab:hover:not(.active){color:rgba(255,255,255,.7);}
+
+/* DATA LAB */
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(255,255,255,.06);margin-bottom:4rem;}
+.ic{background:#1a1a1a;padding:2.5rem;cursor:pointer;transition:background .3s;position:relative;overflow:hidden;}
+.ic:hover{background:#222;}
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--yellow);transform:scaleX(0);transition:transform .4s;transform-origin:left;}
+.ic:hover::before{transform:scaleX(1);}
+.eh{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:1rem;display:block;transition:color .3s;}
+.ic:hover .eh{color:var(--yellow);}
+.ct{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:1.5rem;}
+.bc{display:flex;align-items:flex-end;gap:8px;height:120px;margin-bottom:1rem;}
+.bar{flex:1;background:var(--rust);border-radius:2px 2px 0 0;position:relative;transition:background .3s;min-width:0;}
+.ic:hover .bar{background:var(--yellow);}
+.bar::after{content:attr(data-val);position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--gray);font-weight:500;opacity:0;transition:opacity .3s;}
+.ic:hover .bar::after{opacity:1;}
+.bl{display:flex;gap:8px;}
+.blbl{flex:1;font-size:.55rem;color:var(--gray);text-align:center;text-transform:uppercase;letter-spacing:.05em;}
+.dw{display:flex;align-items:center;gap:2rem;}
+.donut{width:100px;height:100px;flex-shrink:0;border-radius:50%;background:conic-gradient(var(--yellow) 0% 68%,var(--rust) 68% 82%,rgba(255,255,255,.1) 82% 100%);position:relative;}
+.donut::after{content:'68%';position:absolute;inset:20px;background:#1a1a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--white);}
+.dl-leg{flex:1;}
+.li{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.ld{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.lt{font-size:.72rem;color:rgba(255,255,255,.55);font-weight:300;}
+.lc{width:100%;height:100px;margin-bottom:1rem;}
+.lc svg{width:100%;height:100%;overflow:visible;}
+.cl{font-size:.68rem;color:rgba(255,255,255,.35);font-weight:300;margin-top:.5rem;}
+.icd{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.icc{border:1px solid rgba(255,255,255,.08);padding:1.8rem;transition:border-color .3s,transform .3s;cursor:pointer;}
+.icc:hover{border-color:var(--yellow);transform:translateY(-3px);}
+.iq{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:1.2rem;}
+.iq::before{content:'\201C';color:var(--yellow);}
+.iq::after{content:'\201D';color:var(--yellow);}
+.im{display:flex;align-items:center;gap:.8rem;}
+.ia{width:34px;height:34px;border-radius:50%;background:var(--rust);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--white);flex-shrink:0;}
+.in{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.6);display:block;}
+.ii{font-size:.65rem;color:var(--yellow);text-transform:uppercase;letter-spacing:.08em;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;align-items:center;justify-content:center;padding:2rem;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#1a1a1a;max-width:760px;width:100%;padding:3rem;position:relative;max-height:90vh;overflow-y:auto;}
+.mc-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:1.5rem;cursor:pointer;transition:color .3s;}
+.mc-close:hover{color:var(--yellow);}
+.mt2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:1rem;}
+.mb2{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.8;font-weight:300;}
+
+/* READING */
+.reading-hero{background:var(--beige);padding:8rem 5rem 3rem;border-bottom:1px solid var(--lgray);}
+
+/* NL section */
+.nl-section{background:var(--black);padding:6rem 5rem;}
+.nl-tl{margin-top:3rem;display:flex;flex-direction:column;gap:0;border-left:1px solid rgba(255,255,255,.1);padding-left:3rem;}
+.nle{position:relative;padding-bottom:2.5rem;cursor:pointer;transition:opacity .3s;}
+.nle:hover{opacity:.85;}
+.nle::before{content:'';position:absolute;left:-3.35rem;top:.35rem;width:10px;height:10px;border-radius:50%;background:var(--rust);border:2px solid var(--black);box-shadow:0 0 0 3px var(--rust);transition:background .3s,box-shadow .3s;}
+.nle:hover::before{background:var(--yellow);box-shadow:0 0 0 3px var(--yellow);}
+.nl-date{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow);margin-bottom:.4rem;display:block;}
+.nl-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.5rem;transition:color .3s;}
+.nle:hover .nl-title{color:var(--yellow);}
+.nl-sum{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.6;font-weight:300;max-width:540px;}
+.nl-expand{display:none;margin-top:1rem;font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.7;font-weight:300;max-width:540px;border-left:2px solid var(--rust);padding-left:1rem;}
+.nle.expanded .nl-expand{display:block;}
+
+/* SUBSCRIBE */
+.sub-section{background:var(--yellow);padding:8rem 4rem;text-align:center;position:relative;overflow:hidden;min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.sub-section::before{content:'✦';font-size:30vw;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(17,17,17,.04);pointer-events:none;}
+.sub-ey{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:1.2rem;display:block;}
+.sub-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:900;color:var(--black);line-height:1;margin-bottom:1.2rem;}
+.sub-sub{font-size:1rem;color:rgba(17,17,17,.6);margin-bottom:3rem;font-weight:300;max-width:480px;}
+.sub-form{display:flex;gap:0;max-width:480px;width:100%;box-shadow:8px 8px 0 var(--black);}
+.sub-form input{flex:1;padding:1.1rem 1.5rem;font-size:.85rem;border:2px solid var(--black);border-right:none;background:var(--white);font-family:'DM Sans',sans-serif;outline:none;color:var(--black);}
+.sub-form input::placeholder{color:rgba(17,17,17,.4);}
+.sub-form button{padding:1.1rem 2rem;background:var(--black);color:var(--yellow);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border:2px solid var(--black);cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .3s;white-space:nowrap;}
+.sub-form button:hover{background:var(--rust);border-color:var(--rust);}
+.success-msg{display:none;background:var(--black);color:var(--yellow);padding:1.2rem 2.5rem;font-size:.9rem;letter-spacing:.08em;font-weight:600;margin-top:1.5rem;}
+.social-row{display:flex;justify-content:center;gap:2rem;margin-top:4rem;}
+.socl{width:44px;height:44px;border:1.5px solid rgba(17,17,17,.3);display:flex;align-items:center;justify-content:center;color:var(--black);text-decoration:none;transition:all .3s;}
+.socl:hover{background:var(--black);color:var(--yellow);border-color:var(--black);transform:translateY(-3px);}
+
+/* THANK YOU */
+.ty{min-height:100vh;background:var(--black);display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem;}
+.tyi{max-width:560px;}
+.tys{font-size:3rem;color:var(--yellow);margin-bottom:2rem;display:block;animation:spin 8s linear infinite;}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.tyt{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--white);margin-bottom:1rem;}
+.tysu{font-size:1rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:2.5rem;font-weight:300;}
+
+/* FOOTER */
+footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255,255,255,.06);}
+.fi{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.flogo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--white);letter-spacing:.04em;display:block;margin-bottom:.8rem;}
+.flogo span{color:var(--yellow);}
+.ftag{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.6;font-weight:300;max-width:220px;}
+.fct{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:1.2rem;display:block;}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.flinks li button,.flinks li a{background:none;border:none;font-size:.78rem;color:rgba(255,255,255,.45);cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:color .3s;padding:0;text-align:left;}
+.flinks li button:hover,.flinks li a:hover{color:var(--yellow);}
+.fb2{display:flex;align-items:center;justify-content:space-between;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);}
+.fcp{font-size:.68rem;color:rgba(255,255,255,.25);letter-spacing:.04em;}
+.ai-badge{font-size:.65rem;font-style:italic;color:rgba(255,255,255,.25);display:flex;align-items:center;gap:.6rem;}
+.ai-badge::before{content:'';width:20px;height:1px;background:var(--rust);}
+
+/* FADE */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem;}
+  nav.scrolled,nav.dark{padding:.9rem 1.5rem;}
+  .nav-links{display:none;}
+  #hero-section{grid-template-columns:1fr;}
+  .hero-left{min-height:60vh;padding:7rem 1.8rem 3rem;}
+  .hero-right{padding:3rem 1.8rem 4rem;}
+  .hero-tagline{font-size:clamp(2.5rem,10vw,4rem);}
+  .hero-stats{gap:2rem;flex-wrap:wrap;}
+  #premise{grid-template-columns:1fr;}
+  .premise-text{padding:3rem 1.8rem;}
+  .premise-img{min-height:50vw;}
+  .stories-grid{grid-template-columns:1fr;background:transparent;gap:1rem;}
+  .sc:first-child{grid-row:auto;}
+  .mission-split{grid-template-columns:1fr;}
+  .mi{min-height:50vw;}
+  .mt{padding:3rem 1.8rem;}
+  .meth-grid{grid-template-columns:1fr 1fr;}
+  .ig,.icd,.editorial-strip{grid-template-columns:1fr;}
+  .why-strip{flex-direction:column;}
+  .wsi{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}
+  .fi{grid-template-columns:1fr 1fr;}
+  .fb2{flex-direction:column;gap:1rem;text-align:center;}
+  .fac-cards{flex-direction:column;align-items:center;}
+  .downloads{padding:4rem 2rem;}
+  .dl-btns{flex-direction:column;align-items:center;}
+  .ai-free{padding:2rem 1.5rem;}
+  .about-hero,.stories-hero,.reading-hero,.story-feature,.methodology,.nl-section,.sub-section{padding-left:1.8rem;padding-right:1.8rem;}
+  footer{padding:3rem 1.5rem;}
+  .cycle-tabs{padding:0 1.5rem;}
+  .mt,.mission-text{padding:3rem 1.8rem;}
+  .story-pull{padding:3rem 1.8rem;flex-direction:column;gap:1.5rem;}
+  .spl{width:60px;height:3px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="dark">
+  <button class="nav-logo" onclick="nav('home')">The <span>Kinetic</span> Cure</button>
+  <ul class="nav-links">
+    <li><button class="nbtn" onclick="nav('home')" data-page="home">Home</button></li>
+    <li><button class="nbtn" onclick="nav('about')" data-page="about">About</button></li>
+    <li class="dropdown">
+      <button class="nbtn" data-page="stories">Stories ▾</button>
+      <div class="dropdown-menu">
+        <button onclick="nav('cycle1')">Cycle 1</button>
+        <button onclick="nav('cycle2')">Cycle 2</button>
+        <button onclick="nav('cycle3')">Cycle 3</button>
+      </div>
+    </li>
+    <li><button class="nbtn" onclick="nav('datalab')" data-page="datalab">Data Lab</button></li>
+    <li><button class="nbtn" onclick="nav('reading')" data-page="reading">Reading</button></li>
+    <li><button class="nbtn nav-cta" onclick="nav('subscribe')">Subscribe</button></li>
+  </ul>
+</nav>
+
+<!-- ════════ HOME ════════ -->
+<div class="page active" id="page-home">
+  <section id="hero-section">
+    <div class="hero-left">
+      <div class="hero-lc">
+        <p class="hero-eyebrow">A Storytelling & Research Platform</p>
+        <h1 class="hero-title">Feel the<br><em>Rhythm.</em><br>Heal the<br>Mind.</h1>
+        <p class="hero-sub">In a world battling anxiety and burnout, movement becomes medicine. Dance is not escape — it's recovery.</p>
+        <button class="btn-primary" onclick="nav('stories')">Explore Stories <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1 6h14M9 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-brand">The Kinetic Cure</p>
+      <h2 class="hero-tagline">Dance<br>as<br>Medicine</h2>
+      <div class="hero-stats">
+        <div><span class="stat-num">1 in 4</span><span class="stat-label">Face mental health challenges</span></div>
+        <div><span class="stat-num">73%</span><span class="stat-label">Mood improvement via dance</span></div>
+        <div><span class="stat-num">8</span><span class="stat-label">Stories in Cycle 1</span></div>
+      </div>
+    </div>
+    <div class="scroll-ind"><div class="scroll-line"></div><span>Scroll</span></div>
+  </section>
+
+  <!-- PREMISE -->
+  <section id="premise">
+    <div class="premise-text">
+      <span class="premise-label">The Premise</span>
+      <p class="premise-p1">We live in a "head-down" society, where our primary connection to the world is through a 6-inch glass screen. While technology has connected us globally, it has physically and mentally isolated us locally.</p>
+      <p class="premise-p2">The Kinetic Cure is a journalistic investigation into the <strong>life-saving power of dance</strong>. Through the lens of traditional Kathak, modern movement, and everything in between, this project documents how students and local communities are using rhythm to fight anxiety, reclaim their physical presence, and build resilience. This isn't just about art; it's about the human struggle to stay grounded in a networked world.</p>
+    </div>
+    <div class="premise-img">
+      <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Classical dance mudra — hands expressing the language of bharatanatyam" loading="lazy">
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <div class="pull-quote-band">
+    <div class="pqb-inner">
+      <p class="pq-text">Movement became my therapy when words failed. The body remembers what the mind tries to forget.</p>
+      <span class="pq-attr">Field testimony · The Kinetic Cure Archive</span>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section id="why">
+    <p class="why-kicker fade-up">The News Peg</p>
+    <h2 class="why-headline fade-up">Mental health crises are<br>rising <em>globally.</em></h2>
+    <p class="why-body fade-up">Dance offers a scientifically backed emotional release — a primal, embodied language when words fail. The body knows what the mind cannot say.</p>
+    <div class="why-strip">
+      <div class="wsi fade-up"><span class="strip-num">970M</span><div class="strip-title">People Affected</div><div class="strip-body">Globally living with mental health disorders, per WHO 2023</div></div>
+      <div class="wsi fade-up"><span class="strip-num">48%</span><div class="strip-title">Anxiety Reduction</div><div class="strip-body">Reported decrease in anxiety after regular dance therapy sessions</div></div>
+      <div class="wsi fade-up"><span class="strip-num">×3</span><div class="strip-title">Social Connection</div><div class="strip-body">Dance increases oxytocin release threefold vs exercise alone</div></div>
+      <div class="wsi fade-up"><span class="strip-num">12wk</span><div class="strip-title">Change Timeline</div><div class="strip-body">Measurable psychological improvements in just twelve weeks</div></div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL IMAGE STRIP -->
+  <div class="editorial-strip">
+    <div class="es-item">
+      <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Bharatanatyam performer in traditional costume" loading="lazy">
+      <div class="es-overlay"><span class="es-label">Bharatanatyam · The ancient form</span></div>
+    </div>
+    <div class="es-item">
+      <img src="images/IMG_5444.jpg" alt="Two classical dancers in dramatic composition" loading="lazy">
+      <div class="es-overlay"><span class="es-label">Field portrait · Delhi, 2025</span></div>
+    </div>
+    <div class="es-item">
+      <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra — the language of hands in classical Indian dance" loading="lazy">
+      <div class="es-overlay"><span class="es-label">Mudra · The grammar of gesture</span></div>
+    </div>
+  </div>
+
+  <!-- RECENT STORIES -->
+  <section style="padding:6rem 4rem;background:var(--beige)">
+    <div class="section-header">
+      <div><span class="sk">Recent Stories</span><h2 class="st">From the Field</h2></div>
+      <button class="sl" onclick="nav('stories')">View all stories →</button>
+    </div>
+    <div class="stories-grid">
+      <div class="sc fade-up" onclick="nav('cycle1')">
+        <img class="card-img" src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Bharatanatyam performer" loading="lazy">
+        <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
+        <div class="card-body"><span class="card-tag">Feature · Cycle 1</span><h3 class="card-title">When Kathak Became Confession: How Classical Dance Rewired Her Grief</h3><p class="card-exc">She had not wept in three years. Then her guru asked her to perform Bhairavi — and something finally broke open.</p></div>
+      </div>
+      <div class="sc fade-up" onclick="nav('cycle1')">
+        <img class="card-img" src="images/IMG_5444.jpg" alt="Classical dancers in performance" loading="lazy">
+        <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
+        <div class="card-body"><span class="card-tag">Field Report · Cycle 1</span><h3 class="card-title">The Veterans Who Found Stillness in Movement</h3><p class="card-exc">A Delhi-based trauma therapist integrates contemporary movement into PTSD recovery — with quietly remarkable results.</p></div>
+      </div>
+      <div class="sc fade-up" onclick="nav('cycle2')">
+        <img class="card-img" src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Dance movement study" loading="lazy">
+        <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
+        <div class="card-body"><span class="card-tag">Research · Cycle 2</span><h3 class="card-title">On Embodied Cognition: What Neuroscience Tells Us About Rhythm</h3><p class="card-exc">New research from IIT Bombay reveals how rhythmic movement synchronises the default mode network.</p></div>
+      </div>
+      <div class="sc fade-up" onclick="nav('cycle3')">
+        <img class="card-img" src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra hand gesture in dance" loading="lazy">
+        <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
+        <div class="card-body"><span class="card-tag">Investigative · Cycle 3</span><h3 class="card-title">The Prescription That Isn't: Why Dance Therapy Remains Marginalised</h3><p class="card-exc">If dance heals, why isn't it prescribed? An investigation into institutional barriers between movement and medicine.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="fi">
+    <div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">A multimedia journalism project at the intersection of dance, neuroscience, and mental health.</p></div>
+    <div><span class="fct">Navigate</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('stories')">Stories</button></li></ul></div>
+    <div><span class="fct">Research</span><ul class="flinks"><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('reading')">Reading</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div>
+    <div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li><li><a href="https://twitter.com" target="_blank">Twitter / X</a></li></ul></div>
+  </div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure · Ashtanga Marg · Times School of Media</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ ABOUT ════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero"><div class="ah-inner"><span class="pey">About & Ashtanga Marg</span><h1 class="ptitle">The <em>Mission</em><br>Behind the<br>Movement</h1></div></div>
+
+  <div class="mission-split">
+    <div class="mi"><img src="images/IMG_5445.jpg" alt="Bharatanatyam dancer in performance" loading="lazy"></div>
+    <div class="mt">
+      <span class="ml">The Mission</span>
+      <h2 class="mh">Documenting dance.<br>Reporting the body.<br>Healing the record.</h2>
+      <div class="mr"></div>
+      <p class="mb">The Kinetic Cure is a multimedia research project conducted under the SANKALP guidelines at the Times School of Media. Our goal is to produce high-depth stories that explore the intersection of Society, Culture, and New Media through the medium of dance.</p>
+      <p class="mb" style="margin-top:1rem">We believe dance is not peripheral to the mental health conversation — it is central to it. This project gives that belief an evidentiary foundation.</p>
+    </div>
+  </div>
+
+  <div class="methodology">
+    <div style="margin-bottom:3rem"><span class="sk">Process</span><h2 class="st">Ashtanga Marg: The Process</h2></div>
+    <div class="meth-grid">
+      <div class="meth-card fade-up"><span class="mc-num">01</span><span class="mc-icon">📡</span><h3 class="mc-title">News Tracking</h3><p class="mc-body">Daily monitoring of global trends via PressReader. Identifying the news peg that anchors the project to the present moment.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">02</span><span class="mc-icon">🎙</span><h3 class="mc-title">Primary Research</h3><p class="mc-body">Intercept interviews with real practitioners — in studios, on streets, at performances. No intermediaries, no filters.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">03</span><span class="mc-icon">👁</span><h3 class="mc-title">Human Element</h3><p class="mc-body">Field interviews with experienced practitioners and experts. Centre the lived experience, not just the institutional voice.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">04</span><span class="mc-icon">📊</span><h3 class="mc-title">Data Journalism</h3><p class="mc-body">Infographics from original survey data. Numbers earn their place only when they illuminate what words alone cannot.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">05</span><span class="mc-icon">✍️</span><h3 class="mc-title">Multimedia Storytelling</h3><p class="mc-body">AI-free written stories and image-driven narratives. Every word produced by human hands, eyes, and intent.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">06</span><span class="mc-icon">⚖️</span><h3 class="mc-title">Digital Ethics</h3><p class="mc-body">Transparency and algorithm awareness woven into our methodology. We name our tools and interrogate our assumptions.</p></div>
+      <div class="meth-card fade-up"><span class="mc-num">07</span><span class="mc-icon">📣</span><h3 class="mc-title">Audience Building</h3><p class="mc-body">Engaging a 1,000+ subscriber community through consistent, meaningful publication and honest editorial voice.</p></div>
+      <div class="meth-card fade-up" style="background:var(--black)"><span class="mc-num" style="opacity:.2">08</span><span class="mc-icon">🌱</span><h3 class="mc-title" style="color:var(--white)">Policy Impact</h3><p class="mc-body" style="color:rgba(255,255,255,.4)">Translate findings into actionable recommendations. The work ends not on the page but in the room where decisions are made.</p></div>
+    </div>
+  </div>
+
+  <div class="human-el"><div class="hei"><blockquote class="hq">This project is not just studied — it is lived.</blockquote><span class="ha">The Kinetic Cure · Vaishnavi Dembla</span></div></div>
+
+  <div class="faculty">
+    <span class="sk" style="color:var(--yellow)">People Behind the Work</span>
+    <h2 class="st" style="color:var(--white);margin-top:.4rem">Faculty & Mentorship</h2>
+    <div class="fac-cards">
+      <div class="fac-card fade-up"><div class="fac-av">V</div><span class="fac-role">Lead Researcher & Reporter</span><div class="fac-name">Vaishnavi Dembla</div><p class="fac-desc">Dancer, journalist, and researcher at the Times School of Media. Bridging classical movement and evidence-based storytelling.</p></div>
+      <div class="fac-card fade-up"><div class="fac-av" style="background:var(--yellow);color:var(--black)">T</div><span class="fac-role">Supervising Faculty</span><div class="fac-name">Dr. Tilak Jha</div><p class="fac-desc">Senior faculty, Times School of Media. Specialising in multimedia journalism and the SANKALP research methodology.</p></div>
+    </div>
+  </div>
+
+  <div class="downloads">
+    <h2>Project Documents</h2>
+    <p class="dl-sub">Download the full research proposal and SANKALP conversation transcript</p>
+    <div class="dl-btns">
+      <a href="/assets/proposal.pdf" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Project Proposal PDF</a>
+      <a href="/assets/sankalp.pdf" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download SANKALP Transcript PDF</a>
+    </div>
+  </div>
+
+  <div class="ai-free"><div class="ai-free-line"></div><p class="ai-free-text">All stories on this site are reported on the ground. We prioritize human substance over algorithmic generation. No story on The Kinetic Cure has been written by, or in consultation with, generative AI tools.</p></div>
+
+  <footer><div class="fi">
+    <div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Times School of Media · SANKALP Research Project · 2025</p></div>
+    <div><span class="fct">Navigate</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('stories')">Stories</button></li></ul></div>
+    <div><span class="fct">Research</span><ul class="flinks"><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('reading')">Reading</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div>
+    <div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li><li><a href="https://twitter.com" target="_blank">Twitter / X</a></li></ul></div>
+  </div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure · Ashtanga Marg · Times School of Media</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ STORIES HUB ════════ -->
+<div class="page" id="page-stories">
+  <div class="stories-hero"><div class="shi"><span class="pey">The Archive</span><h1 class="spt">All Stories</h1><p class="sps">Three cycles of field reporting, intimate portraits, and evidence-based narratives about dance and the recovering mind.</p></div></div>
+  <div class="cycle-tabs">
+    <button class="ctab active" onclick="showCycle(1,this)">Cycle 1</button>
+    <button class="ctab" onclick="showCycle(2,this)">Cycle 2</button>
+    <button class="ctab" onclick="showCycle(3,this)">Cycle 3</button>
+  </div>
+  <div id="stories-content" style="background:var(--beige);padding:4rem 5rem"></div>
+  <footer><div class="fi">
+    <div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Field journalism at the intersection of dance and mental health.</p></div>
+    <div><span class="fct">Cycles</span><ul class="flinks"><li><button onclick="nav('cycle1')">Cycle 1</button></li><li><button onclick="nav('cycle2')">Cycle 2</button></li><li><button onclick="nav('cycle3')">Cycle 3</button></li></ul></div>
+    <div><span class="fct">Platform</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div>
+    <div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div>
+  </div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ CYCLE 1 ════════ -->
+<div class="page" id="page-cycle1">
+  <div class="stories-hero"><div class="shi"><span class="cycle-badge">Cycle 1</span><h1 class="spt">Grief, Rhythm,<br>and the Return</h1><p class="sps">Eight stories documenting how Kathak and contemporary forms became tools of emotional survival in Delhi, Chennai, and Kolkata.</p></div></div>
+  <div class="story-feature">
+    <span class="fe">Feature Story · Cycle 1</span>
+    <h2 class="ft">When Kathak Became Confession: How Classical Dance Rewired Her Grief</h2>
+    <div class="fb">
+      <p>She had not wept in three years. Then her guru asked her to perform Bhairavi — the raga of longing, the raga that signals the end of a concert, the raga that in classical Hindustani tradition is reserved for the hour before dusk. Something inside her finally broke open.</p>
+      <p>Meera is thirty-one, a software engineer from Delhi who began Kathak at the age of six and gave it up at twenty-two when a corporate career seemed incompatible with the discipline of a dance practice. Her mother died during the pandemic. Meera did not cry at the funeral. She did not cry for eighteen months afterwards.</p>
+      <p>"The grief became like a stone in my chest," she told me in a rehearsal room in Lajpat Nagar, her feet still moving unconsciously between sentences, the bells on her ankles a soft and constant counterpoint. "I knew it was there. I could feel its weight. But I couldn't reach it."</p>
+      <p>Her therapist suggested she return to Kathak. Not as performance. Not as accomplishment. As excavation. Within three sessions, Meera wept for the first time since her mother's death. Within eight weeks, her psychiatrist reported a statistically significant reduction in her PHQ-9 depression score.</p>
+      <p>This is not an isolated story. Across this project's first reporting cycle, we documented eight individuals for whom dance became the route to emotional recovery that cognitive behavioural therapy alone had not provided.</p>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE replacing video embed -->
+  <div class="story-pull">
+    <div class="spl"></div>
+    <blockquote class="spq">The interesting thing is that I didn't recommend the dance. She discovered it herself — and it did what three years of pharmacology had not.</blockquote>
+  </div>
+
+  <!-- STORY IMAGE replacing second media embed -->
+  <div class="story-img-block">
+    <img src="images/IMG_5444.jpg" alt="Two classical dancers performing — field portrait, Delhi 2025" loading="lazy">
+    <span class="story-img-caption">Field Portrait · Delhi, March 2025</span>
+  </div>
+
+  <div style="background:var(--beige);padding:4rem 5rem">
+    <span class="sk">Social Proof</span><h3 class="st" style="margin-bottom:2.5rem">From the Community</h3>
+    <div class="icd" style="grid-template-columns:repeat(3,1fr)">
+      <div class="icc" style="background:var(--white);border-color:var(--lgray)"><p class="iq" style="color:#333">I stopped needing the medication after six weeks of Bharatanatyam. My psychiatrist said my baseline anxiety scores had halved.</p><div class="im"><div class="ia">R</div><div><span class="in" style="color:#333">Revathi, 34 · Chennai</span><span class="ii">Embodied regulation</span></div></div></div>
+      <div class="icc" style="background:var(--white);border-color:var(--lgray)"><p class="iq" style="color:#333">Movement gave me a language for things I had no words for. Grief doesn't need sentences — it needs a body willing to feel.</p><div class="im"><div class="ia">A</div><div><span class="in" style="color:#333">Anonymous · Delhi</span><span class="ii">Non-verbal processing</span></div></div></div>
+      <div class="icc" style="background:var(--white);border-color:var(--lgray)"><p class="iq" style="color:#333">PTSD clusters dissolved in veterans who had resisted talk therapy for years. Dance reached something else entirely.</p><div class="im"><div class="ia">D</div><div><span class="in" style="color:#333">Dr. Leena Mathur · Therapist</span><span class="ii">Somatic memory release</span></div></div></div>
+    </div>
+  </div>
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Cycle 1 · Eight stories from the field</p></div><div><span class="fct">Cycles</span><ul class="flinks"><li><button onclick="nav('cycle1')">Cycle 1</button></li><li><button onclick="nav('cycle2')">Cycle 2</button></li><li><button onclick="nav('cycle3')">Cycle 3</button></li></ul></div><div><span class="fct">Platform</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ CYCLE 2 ════════ -->
+<div class="page" id="page-cycle2">
+  <div class="stories-hero"><div class="shi"><span class="cycle-badge">Cycle 2</span><h1 class="spt">The Science<br>of the Body</h1><p class="sps">Cycle 2 moves from the intimate to the institutional — examining what neuroscience, psychiatry, and cultural theory say about why dance heals.</p></div></div>
+  <div class="story-feature">
+    <span class="fe">Research Feature · Cycle 2</span>
+    <h2 class="ft">On Embodied Cognition: What Neuroscience Tells Us About Rhythm and the Recovering Mind</h2>
+    <div class="fb">
+      <p>The default mode network is the brain's background hum — the introspective, self-referential circuitry that activates when we are not focused on any particular task. In depression, it tends to over-activate, looping rumination and self-criticism into a kind of internal weather that the depressed person cannot escape.</p>
+      <p>New research from IIT Bombay's neuroscience lab offers a striking finding: rhythmic, embodied movement — the kind that demands attentional presence in the body — consistently disrupts this over-activation. Among subjects who practiced structured dance for eight weeks, the functional connectivity between the default mode network and the salience network showed measurable normalisation.</p>
+      <p>"We've known for decades that exercise helps depression," Dr. Ananya Krishnan told me in her lab, surrounded by brain scans that looked like weather maps of another world. "What we didn't fully understand until recently was that rhythm is doing something distinct from general movement. The entrainment of the body to external beat appears to create a kind of neurological reset."</p>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE replacing video embeds -->
+  <div class="story-pull">
+    <div class="spl"></div>
+    <blockquote class="spq">Rhythm is doing something distinct from general movement. Entrainment of the body to an external beat appears to create a neurological reset.</blockquote>
+  </div>
+
+  <!-- EDITORIAL IMAGE replacing second embed -->
+  <div class="story-img-block">
+    <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Movement study — contemporary dance form" loading="lazy">
+    <span class="story-img-caption">Research Field · Movement Documentation, 2025</span>
+  </div>
+
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Cycle 2 · The neuroscience of movement and mind</p></div><div><span class="fct">Cycles</span><ul class="flinks"><li><button onclick="nav('cycle1')">Cycle 1</button></li><li><button onclick="nav('cycle2')">Cycle 2</button></li><li><button onclick="nav('cycle3')">Cycle 3</button></li></ul></div><div><span class="fct">Platform</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ CYCLE 3 ════════ -->
+<div class="page" id="page-cycle3">
+  <div class="stories-hero"><div class="shi"><span class="cycle-badge">Cycle 3</span><h1 class="spt">Community,<br>Policy & Future</h1><p class="sps">Cycle 3 asks the structural question: if dance heals, why isn't it prescribed? An investigation into institutional barriers between movement and medicine.</p></div></div>
+  <div class="story-feature">
+    <span class="fe">Investigative Feature · Cycle 3</span>
+    <h2 class="ft">The Prescription That Isn't: Why Dance Therapy Remains on the Margins of Indian Mental Healthcare</h2>
+    <div class="fb">
+      <p>In the United Kingdom, dance/movement therapy is recognised as a credentialed allied health profession. In the United States, the American Dance Therapy Association has been credentialing practitioners since 1966. In India — a country with a classical dance tradition among the richest in the world, and a mental health crisis among the least resourced — dance therapy does not yet have a formal credentialing framework.</p>
+      <p>This is the central finding of Cycle 3: that the gap between the evidence (abundant) and the policy (absent) is not a scientific gap. It is a political, economic, and cultural one. Dance therapy in India is seen as supplement, not system. As art, not medicine.</p>
+      <p>"The irony is almost bitter," says Dr. Meenakshi Rao, a psychiatrist at AIIMS Delhi. "India gave this form to the world. Bharatanatyam is two thousand years old. And yet we will prescribe an SSRI before we will prescribe a Kathak class."</p>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE replacing video embeds -->
+  <div class="story-pull">
+    <div class="spl"></div>
+    <blockquote class="spq">India gave this form to the world. Bharatanatyam is two thousand years old. And yet we will prescribe an SSRI before we will prescribe a Kathak class.</blockquote>
+  </div>
+
+  <!-- IMAGE replacing second embed -->
+  <div class="story-img-block">
+    <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra — the ancient language of hands" loading="lazy">
+    <span class="story-img-caption">Investigative Portrait · Delhi & Mumbai, 2025</span>
+  </div>
+
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Cycle 3 · Structural barriers to embodied healing</p></div><div><span class="fct">Cycles</span><ul class="flinks"><li><button onclick="nav('cycle1')">Cycle 1</button></li><li><button onclick="nav('cycle2')">Cycle 2</button></li><li><button onclick="nav('cycle3')">Cycle 3</button></li></ul></div><div><span class="fct">Platform</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ DATA LAB ════════ -->
+<div class="page" id="page-datalab">
+  <div class="about-hero" style="background:var(--black)" id="datalab-hero">
+    <div class="ah-inner"><span class="pey">Evidence Archive</span><h1 class="ptitle">The <em>Data</em><br>Lab</h1></div>
+  </div>
+  <div style="background:var(--black);padding:2rem 5rem 5rem">
+    <div class="section-header" style="margin-bottom:3rem">
+      <div><span class="sk" style="color:var(--yellow)">Infographics</span><h2 class="st" style="color:var(--white)">The Evidence</h2></div>
+      <span style="font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:.1em">Click any chart to expand</span>
+    </div>
+    <div class="ig">
+      <div class="ic fade-up" onclick="openM('mood')">
+        <h3 class="ct">Mood Improvement Over 12 Weeks</h3>
+        <div class="bc"><div class="bar" style="height:30%" data-val="30%"></div><div class="bar" style="height:38%" data-val="38%"></div><div class="bar" style="height:45%" data-val="45%"></div><div class="bar" style="height:52%" data-val="52%"></div><div class="bar" style="height:58%" data-val="58%"></div><div class="bar" style="height:64%" data-val="64%"></div><div class="bar" style="height:73%" data-val="73%"></div><div class="bar" style="height:82%" data-val="82%"></div></div>
+        <div class="bl"><div class="blbl">Wk1</div><div class="blbl">Wk2</div><div class="blbl">Wk3</div><div class="blbl">Wk4</div><div class="blbl">Wk6</div><div class="blbl">Wk8</div><div class="blbl">Wk10</div><div class="blbl">Wk12</div></div>
+        <p class="cl">n=48 participants · Self-reported PANAS scale</p><span class="eh">↗ Click to expand</span>
+      </div>
+      <div class="ic fade-up" onclick="openM('symptoms')">
+        <h3 class="ct">Reported Symptom Relief</h3>
+        <div class="dw"><div class="donut"></div><div class="dl-leg"><div class="li"><div class="ld" style="background:var(--yellow)"></div><span class="lt">68% Significant improvement</span></div><div class="li"><div class="ld" style="background:var(--rust)"></div><span class="lt">14% Moderate relief</span></div><div class="li"><div class="ld" style="background:rgba(255,255,255,.1)"></div><span class="lt">18% Minimal change</span></div></div></div>
+        <p class="cl" style="margin-top:1rem">DMT cohort · 6-month study</p><span class="eh">↗ Click to expand</span>
+      </div>
+      <div class="ic fade-up" onclick="openM('cortisol')">
+        <h3 class="ct">Stress Cortisol Reduction</h3>
+        <div class="lc"><svg viewBox="0 0 280 100"><polyline points="10,80 45,70 80,60 115,45 150,38 185,28 220,20 260,15" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10" stroke-linecap="round"/><polyline points="10,80 45,70 80,60 115,45 150,38 185,28 220,20 260,15" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="80" r="4" fill="var(--rust)"/><circle cx="260" cy="15" r="4" fill="var(--yellow)"/><text x="268" y="19" fill="var(--yellow)" font-size="9" font-family="DM Sans,sans-serif">–41%</text></svg></div>
+        <p class="cl">Salivary cortisol · 8-week Odissi programme</p><span class="eh">↗ Click to expand</span>
+      </div>
+    </div>
+    <div style="margin-top:4rem">
+      <span class="sk" style="color:var(--yellow)">Intercept Log</span><h2 class="st" style="color:var(--white);margin-bottom:2rem">Field Testimonies</h2>
+      <div class="icd">
+        <div class="icc fade-up" onclick="openM('i1')"><p class="iq">I stopped needing the medication after six weeks of Bharatanatyam. My psychiatrist said my baseline anxiety scores had halved.</p><div class="im"><div class="ia">R</div><div><span class="in">Revathi, 34 · Chennai</span><span class="ii">Embodied regulation</span></div></div></div>
+        <div class="icc fade-up" onclick="openM('i2')"><p class="iq">Movement gave me a language for things I had no words for. Grief doesn't need sentences — it needs a body willing to feel.</p><div class="im"><div class="ia">A</div><div><span class="in">Anonymous · Delhi</span><span class="ii">Non-verbal processing</span></div></div></div>
+        <div class="icc fade-up" onclick="openM('i3')"><p class="iq">We saw PTSD symptom clusters dissolve in veterans who had resisted talk therapy for years. Dance reached something else entirely.</p><div class="im"><div class="ia">D</div><div><span class="in">Dr. Leena Mathur · Therapist</span><span class="ii">Somatic memory release</span></div></div></div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Evidence-based storytelling from the field.</p></div><div><span class="fct">Navigate</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('stories')">Stories</button></li></ul></div><div><span class="fct">Research</span><ul class="flinks"><li><button onclick="nav('reading')">Reading</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ READING ════════ -->
+<div class="page" id="page-reading">
+  <div class="reading-hero"><span class="pey">Newsletter Archive</span><h1 class="ptitle" style="color:var(--black)">Reading<br>the World</h1></div>
+  <div class="nl-section">
+    <div class="section-header"><div><span class="sk" style="color:var(--yellow)">Archive</span><h2 class="st" style="color:var(--white)">Weekly Dispatches</h2></div><button class="sl" style="color:rgba(255,255,255,.3);border-color:rgba(255,255,255,.1)" onclick="nav('subscribe')">Subscribe →</button></div>
+    <div class="nl-tl">
+      <div class="nle fade-up" onclick="this.classList.toggle('expanded')"><span class="nl-date">April 21, 2025</span><h3 class="nl-title">Dispatch #8: The Body Remembers What the Mind Forgets</h3><p class="nl-sum">On somatic memory, the polyvagal theory, and why trauma lives in tissue.</p><div class="nl-expand">Bessel van der Kolk's foundational work on trauma and the body has been in circulation for decades, yet it remains poorly integrated into mainstream Indian psychiatric practice. This dispatch reports from the Odissi intensive in Bhubaneswar, where a three-day immersion was documented as a structured intervention rather than a recreational event. The findings are preliminary. The implications are not.</div></div>
+      <div class="nle fade-up" onclick="this.classList.toggle('expanded')"><span class="nl-date">April 14, 2025</span><h3 class="nl-title">Dispatch #7: Against the Wellness Industrial Complex</h3><p class="nl-sum">When dance gets packaged and sold, what is lost?</p><div class="nl-expand">There is a version of this project that could be monetised into irrelevance — turned into a subscription-based app, a certification programme, a series of motivational reels. This dispatch is an argument against that version. The radical potential of dance as therapy lies precisely in its refusal to be productised. The body does not offer returns on investment. That is its gift and its resistance.</div></div>
+      <div class="nle fade-up" onclick="this.classList.toggle('expanded')"><span class="nl-date">April 7, 2025</span><h3 class="nl-title">Dispatch #6: Reading the Cognitive Revolution Through a Dancer's Eyes</h3><p class="nl-sum">Why anthropology makes an unexpected case for Kathak as humanity's oldest therapy.</p><div class="nl-expand">The emergence of ritual dance in the archaeological record predates writing by tens of thousands of years. Dance may be the original shared fiction: a story told in synchronised bodies, an agreement to believe together, a rehearsal for the social trust on which civilisation depends.</div></div>
+      <div class="nle fade-up" onclick="this.classList.toggle('expanded')"><span class="nl-date">March 31, 2025</span><h3 class="nl-title">Dispatch #5: Three Women, One Studio, Zero Medication</h3><p class="nl-sum">A reporting letter from a Kolkata dance space where three women navigated depression, grief, and OCD.</p><div class="nl-expand">Nandita, Priya, and Suchismita had not met before the first class. By the eighth week, they were each other's most consistent source of emotional support. Their therapists compared notes and found that each woman had reduced or eliminated pharmacological intervention during the same period.</div></div>
+      <div class="nle fade-up" onclick="this.classList.toggle('expanded')"><span class="nl-date">March 24, 2025</span><h3 class="nl-title">Dispatch #4: What Intercept Journalism Finds That Surveys Cannot</h3><p class="nl-sum">On method, encounter, and the ethics of proximity.</p><div class="nl-expand">The decision to use intercept interviews as a primary research method was not accidental. Surveys ask what people think. Intercepts catch what people feel in the moment after an experience. A person exiting a Bharatanatyam class at 7 PM on a Thursday is in a different emotional register than the same person filling in an online questionnaire two weeks later.</div></div>
+    </div>
+  </div>
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Dispatches and the archive of inquiry.</p></div><div><span class="fct">Navigate</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('stories')">Stories</button></li></ul></div><div><span class="fct">Research</span><ul class="flinks"><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('subscribe')">Subscribe</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ SUBSCRIBE ════════ -->
+<div class="page" id="page-subscribe">
+  <div class="sub-section">
+    <span class="sub-ey">Join the Community</span>
+    <h2 class="sub-title">Join the<br>Movement</h2>
+    <p class="sub-sub">Weekly dispatches from the intersection of dance, neuroscience, and the human mind. No algorithms. No noise. Just the work.</p>
+    <div class="sub-form" id="subForm">
+      <input type="email" id="emailInp" placeholder="your@email.com">
+      <button type="button" onclick="doSub()">Subscribe</button>
+    </div>
+    <div class="success-msg" id="succMsg">✦ Welcome to The Kinetic Cure. Your first dispatch arrives Friday.</div>
+    <div class="social-row">
+      <a href="https://linkedin.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://instagram.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://twitter.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    </div>
+  </div>
+  <footer><div class="fi"><div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Dispatches from the intersection of movement and mind.</p></div><div><span class="fct">Navigate</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('stories')">Stories</button></li></ul></div><div><span class="fct">Research</span><ul class="flinks"><li><button onclick="nav('datalab')">Data Lab</button></li><li><button onclick="nav('reading')">Reading</button></li></ul></div><div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li><li><a href="https://twitter.com" target="_blank">Twitter / X</a></li></ul></div></div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
+
+<!-- ════════ THANK YOU ════════ -->
+<div class="page" id="page-thankyou">
+  <div class="ty"><div class="tyi"><span class="tys">✦</span><h1 class="tyt">You're in the Movement</h1><p class="tysu">Your first dispatch arrives this Friday. In the meantime, explore the stories, dig into the data, and know that every subscriber makes this journalism possible.</p><button class="btn-primary" onclick="nav('home')">Return Home <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1 6h14M9 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeM(event)">
+  <div class="modal-box">
+    <button class="mc-close" onclick="closeM(null)">✕</button>
+    <h2 class="mt2" id="mTitle"></h2>
+    <div class="mb2" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+// ── ROUTER ──
+const pages={home:'page-home',about:'page-about',stories:'page-stories',cycle1:'page-cycle1',cycle2:'page-cycle2',cycle3:'page-cycle3',datalab:'page-datalab',reading:'page-reading',subscribe:'page-subscribe',thankyou:'page-thankyou'};
+function nav(p){
+  if(!pages[p])return;
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active','page-enter'));
+  const t=document.getElementById(pages[p]);
+  t.classList.add('active','page-enter');
+  window.scrollTo({top:0,behavior:'instant'});
+  document.querySelectorAll('[data-page]').forEach(b=>{
+    const dp=b.dataset.page;
+    b.classList.toggle('active',dp===p||(dp==='stories'&&['cycle1','cycle2','cycle3','stories'].includes(p)));
+  });
+  setTimeout(initObs,60);
+  if(p!=='subscribe'){document.getElementById('subForm').style.display='flex';document.getElementById('succMsg').style.display='none';}
+}
+
+// ── SCROLL NAV ──
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+
+// ── FADE OBS ──
+function initObs(){
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.page.active .fade-up:not(.visible)').forEach(el=>obs.observe(el));
+}
+initObs();
+
+// ── STORIES HUB TABS ──
+const cdata={
+  1:[{tag:'Feature · Cycle 1',title:'When Kathak Became Confession',exc:'She had not wept in three years. Then her guru asked her to perform Bhairavi — and something finally broke open.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle1'},
+     {tag:'Field Report · Cycle 1',title:'The Veterans Who Found Stillness in Movement',exc:'A Delhi-based trauma therapist integrates contemporary movement into PTSD recovery.',img:'images/IMG_5444.jpg',pg:'cycle1'},
+     {tag:'Portrait · Cycle 1',title:'Ashtanga Marg and the Studio That Refused to Be Silent',exc:'Inside the dance programme that put mental health at its curriculum\'s centre.',img:'images/0b36725ac5f704ac91ada08043156b1f.jpg',pg:'cycle1'}],
+  2:[{tag:'Research · Cycle 2',title:'On Embodied Cognition: What Neuroscience Tells Us',exc:'New research from IIT Bombay reveals how rhythmic movement synchronises the default mode network.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle2'},
+     {tag:'Interview · Cycle 2',title:'The Psychiatrist Who Prescribes Dance',exc:'Dr. Meenakshi Rao has been quietly recommending Kathak to her patients for a decade.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle2'}],
+  3:[{tag:'Investigative · Cycle 3',title:'The Prescription That Isn\'t',exc:'If dance heals, why isn\'t it prescribed? An investigation into institutional barriers.',img:'images/IMG_5444.jpg',pg:'cycle3'},
+     {tag:'Essay · Cycle 3',title:'Against the Wellness Industrial Complex',exc:'When dance gets packaged and sold as wellness, what radical potential is lost?',img:'images/0b36725ac5f704ac91ada08043156b1f.jpg',pg:'cycle3'}]
+};
+function showCycle(n,btn){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const d=cdata[n];
+  document.getElementById('stories-content').innerHTML=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
+    ${d.map(s=>`<div class="sc" style="background:var(--white);border:1px solid var(--lgray)" onclick="nav('${s.pg}')">
+      <img class="card-img" src="${s.img}" alt="${s.title}" style="aspect-ratio:3/2" loading="lazy">
+      <div class="card-overlay"><span class="overlay-read">Read →</span></div>
+      <div class="card-body"><span class="card-tag">${s.tag}</span><h3 class="card-title">${s.title}</h3><p class="card-exc">${s.exc}</p></div>
+    </div>`).join('')}
+  </div>`;
+}
+showCycle(1,null);
+
+// ── MODAL ──
+const mdata={
+  mood:{t:'Mood Improvement Over 12 Weeks',b:'Data from a 12-week structured dance intervention (n=48, mixed Bharatanatyam and contemporary). Self-reported mood measured using the Positive and Negative Affect Schedule (PANAS). Subjects showed a 174% improvement in positive affect score from Week 1 to Week 12. The steep improvement in weeks 8–12 correlates with subjects reporting a shift from "learning movement" to "embodying movement" — a qualitative threshold several described independently without prompting.'},
+  symptoms:{t:'Reported Symptom Relief in DMT Cohort',b:'6-month cohort study across three dance therapy centres. All subjects entered with a DSM-5 diagnosis. 68% reported significant improvement (>50% symptom reduction). 14% moderate relief. 18% minimal change. Subjects in the "significant improvement" group had an average attendance rate of 87% — suggesting dosage matters as much as modality.'},
+  cortisol:{t:'Stress Cortisol Reduction — Odissi Programme',b:'Salivary cortisol measured at Week 1 and Week 8 of a structured Odissi programme. 38 subjects. Morning cortisol decreased by an average of 41% — comparable to 8-week MBSR programmes. The mechanism likely involves both physical exertion and the attentional engagement required by Odissi: simultaneous tracking of mudra, footwork, expression, and musicality functions as a structured mindfulness exercise.'},
+  i1:{t:'Revathi, 34 — Chennai',b:'Intercept recorded post-class at a Bharatanatyam studio in Mylapore, March 2025. Revathi had a diagnosed generalised anxiety disorder and had been on medication for four years. Her psychiatrist confirmed a reduction in PHQ-9 scores and the decision to trial a reduced medication dose. "The interesting thing," her psychiatrist noted, "is that I didn\'t recommend the dance. She discovered it herself."'},
+  i2:{t:'Anonymous — Delhi',b:'The subject requested anonymity. Interview conducted in Hauz Khas, April 2025. The subject had experienced a significant bereavement and found conventional grief counselling "like being asked to talk about a language I\'d forgotten." Dance gave them a non-verbal processing space — illustrating what researchers call embodied narrative: the capacity of the body to communicate experience that exceeds verbal representation.'},
+  i3:{t:'Dr. Leena Mathur — Trauma Therapist, Delhi',b:'"Talk therapy works from the top down — from the cognitive to the somatic. Movement therapy works from the bottom up. For clients whose trauma is stored in the body rather than the narrative mind, that distinction is everything." Six of her veteran clients participated in a structured dance component over twelve weeks. Four reported clinically significant improvements in PTSD symptom scores.'}
+};
+function openM(k){
+  const d=mdata[k];if(!d)return;
+  document.getElementById('mTitle').textContent=d.t;
+  document.getElementById('mBody').textContent=d.b;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeM(e){
+  if(e&&e.target!==document.getElementById('modal'))return;
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM(null);});
+
+// ── SUBSCRIBE ──
+function doSub(){
+  const inp=document.getElementById('emailInp');
+  const v=inp.value.trim();
+  if(v&&v.includes('@')&&v.includes('.')){
+    document.getElementById('subForm').style.display='none';
+    document.getElementById('succMsg').style.display='block';
+    setTimeout(()=>nav('thankyou'),1800);
+  } else {
+    inp.style.outline='2px solid var(--rust)';
+    inp.focus();
+    setTimeout(()=>inp.style.outline='none',1400);
+  }
+}
+document.getElementById('emailInp').addEventListener('keydown',e=>{if(e.key==='Enter')doSub();});
+</script>
+</body>
+</html>
