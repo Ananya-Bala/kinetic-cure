@@ -37,7 +37,7 @@ nav.scrolled,nav.dark{background:rgba(17,17,17,.97);backdrop-filter:blur(12px);p
 /* HERO */
 #hero-section{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
 .hero-left{background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
-.hero-left::before{content:'';position:absolute;inset:0;background:url('images/IMG_5444.jpg') center/cover;opacity:.38;transition:transform 8s ease;}
+.hero-left::before{content:'';position:absolute;inset:0;background:url('images/_\ \(12\).jpeg') center/cover;opacity:.38;transition:transform 8s ease;}
 .hero-left:hover::before{transform:scale(1.04);}
 .hero-left::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.85) 30%,rgba(17,17,17,.3) 100%);}
 .hero-lc{position:relative;z-index:2;}
@@ -128,7 +128,7 @@ nav.scrolled,nav.dark{background:rgba(17,17,17,.97);backdrop-filter:blur(12px);p
 
 /* ABOUT HERO */
 .about-hero{background:var(--black);min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 5rem 4rem;position:relative;overflow:hidden;}
-.about-hero::before{content:'';position:absolute;inset:0;background:url('images/PHOTO-2026-04-30-03-42-07.jpg') center/cover;opacity:.28;}
+.about-hero::before{content:'';position:absolute;inset:0;background:url('images/IMG_5445.jpg') center/cover;opacity:.28;}
 .about-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.92) 40%,rgba(17,17,17,.4) 100%);}
 .ah-inner{position:relative;z-index:2;}
 .pey{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);font-weight:600;margin-bottom:1rem;display:block;}
@@ -177,7 +177,7 @@ nav.scrolled,nav.dark{background:rgba(17,17,17,.97);backdrop-filter:blur(12px);p
 
 /* HUMAN ELEMENT */
 .human-el{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.human-el::before{content:'';position:absolute;inset:0;background:url('images/PHOTO-2026-04-30-03-42-07.jpg') center 30%/cover;filter:blur(3px) brightness(.35);}
+.human-el::before{content:'';position:absolute;inset:0;background:url('images/IMG_5445.jpg') center 30%/cover;filter:blur(3px) brightness(.35);}
 .hei{position:relative;z-index:2;text-align:center;padding:3rem;max-width:700px;}
 .hq{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-style:italic;color:var(--white);line-height:1.25;font-weight:300;}
 .hq::before{content:'\201C';color:var(--yellow);}
@@ -327,11 +327,117 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
 
+/* ABOUT ME */
+.aboutme-section{display:grid;grid-template-columns:1fr 1.1fr;min-height:80vh;background:var(--beige);}
+.aboutme-images{position:relative;padding:4rem 3rem;display:flex;align-items:center;justify-content:center;background:var(--black);overflow:hidden;}
+.aboutme-images::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(192,86,45,.15) 0%,transparent 60%);}
+.ami-collage{position:relative;width:100%;max-width:380px;}
+.ami-main{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;filter:none;box-shadow:0 24px 60px rgba(0,0,0,.5);position:relative;z-index:2;}
+.ami-accent1{position:absolute;top:-1.5rem;right:-1.5rem;width:55%;aspect-ratio:1;object-fit:cover;filter:grayscale(100%);opacity:.6;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:1;border:3px solid var(--black);}
+.ami-accent2{position:absolute;bottom:-1.5rem;left:-1.5rem;width:45%;aspect-ratio:1;object-fit:cover;filter:sepia(60%);opacity:.75;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:3;border:3px solid var(--yellow);}
+.ami-label{position:absolute;bottom:3rem;right:-1rem;background:var(--yellow);color:var(--black);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.5rem 1rem;z-index:4;transform:rotate(-2deg);}
+.aboutme-text{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.aboutme-text .pey{margin-bottom:1rem;}
+.aboutme-text h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.05;margin-bottom:.5rem;}
+.aboutme-text h2 em{font-style:italic;color:var(--rust);}
+.ami-rule{width:48px;height:2px;background:var(--rust);margin:1.5rem 0;}
+.ami-body{font-size:.95rem;line-height:2;color:#3a3a3a;font-weight:300;}
+.ami-body p{margin-bottom:1.4rem;}
+.ami-body p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--rust);float:left;line-height:.8;margin:.05em .12em 0 0;}
+.ami-body strong{font-weight:700;color:var(--black);}
+.ami-body em{font-style:italic;color:var(--rust);}
+.ami-sign{margin-top:2rem;display:flex;align-items:center;gap:1rem;}
+.ami-sign-line{width:32px;height:1px;background:var(--rust);}
+.ami-sign-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--gray);}
+
+/* ANANYA INTERVIEW PAGE */
+.interview-hero{min-height:65vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 5rem 4rem;position:relative;overflow:hidden;background:var(--black);}
+.interview-hero::before{content:'';position:absolute;inset:0;background:url('images/vaishnavi-dancing.png') center 20%/cover;opacity:.35;}
+.interview-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.95) 35%,rgba(17,17,17,.4) 100%);}
+.ih-inner{position:relative;z-index:2;max-width:760px;}
+.ih-kicker{display:inline-flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
+.ih-kicker span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+.ih-kicker .tag-interview{background:var(--rust);color:var(--white);padding:.35rem .9rem;}
+.ih-kicker .tag-cycle{color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.15);padding:.35rem .9rem;}
+.ih-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4.5rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:1.2rem;}
+.ih-title em{font-style:italic;color:var(--yellow);}
+.ih-sub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:560px;font-weight:300;}
+.ih-meta{display:flex;gap:2rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1);}
+.ih-meta-item{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.ih-meta-item strong{color:var(--yellow);display:block;font-size:.75rem;margin-bottom:.2rem;}
+
+.interview-body{max-width:760px;margin:0 auto;padding:5rem 2rem;}
+.int-intro{font-size:1.1rem;line-height:1.95;color:#3a3a3a;font-weight:300;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--lgray);}
+.int-intro::first-letter{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--rust);float:left;line-height:.8;margin:.05em .12em 0 0;}
+.qa-block{margin-bottom:2.5rem;}
+.qa-q{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:.8rem;padding-left:1.2rem;border-left:3px solid var(--yellow);line-height:1.4;}
+.qa-a{font-size:.95rem;line-height:1.95;color:#3a3a3a;font-weight:300;}
+.qa-a p{margin-bottom:1rem;}
+.int-pullquote{background:var(--black);padding:4rem 5rem;margin:3rem 0;position:relative;}
+.int-pullquote::before{content:'\201C';font-family:'Playfair Display',serif;font-size:8rem;color:var(--yellow);opacity:.15;position:absolute;top:.5rem;left:3rem;line-height:1;}
+.ipq-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);font-style:italic;color:var(--white);line-height:1.35;font-weight:300;position:relative;z-index:1;}
+.ipq-attr{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:1.5rem;display:block;}
+.int-img-break{width:100%;height:380px;object-fit:cover;object-position:center 30%;display:block;filter:grayscale(15%);margin:3rem 0;}
+.int-section-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--rust);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:.5rem;border-bottom:1px solid var(--lgray);}
+.int-closer{background:var(--beige);padding:3rem 5rem;border-left:4px solid var(--rust);margin:3rem 0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:#555;line-height:1.7;}
+
+@media(max-width:900px){
+  .aboutme-section{grid-template-columns:1fr;}
+  .aboutme-images{padding:3rem 2rem;min-height:50vw;}
+  .ami-collage{max-width:280px;}
+  .aboutme-text{padding:3rem 1.8rem;}
+  .interview-hero{padding:7rem 1.8rem 3rem;}
+  .interview-body{padding:3rem 1.5rem;}
+  .int-pullquote{padding:3rem 2rem;}
+  .int-closer{padding:2rem 1.5rem;}
+}
+
 /* RESPONSIVE */
+/* ANANYA TWO-COLUMN LAYOUT */
+.ananya-layout{display:grid;grid-template-columns:1fr 360px;gap:0;align-items:start;max-width:1200px;margin:0 auto;padding:0 3rem;}
+.ananya-interview-col{padding:5rem 4rem 6rem 0;border-right:1px solid var(--lgray);}
+.ananya-video-col{padding:4rem 0 6rem 3rem;}
+.video-sticky-wrapper{position:sticky;top:90px;}
+.video-label{margin-bottom:1rem;}
+.video-tag{display:inline-block;background:var(--rust);color:var(--white);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.35rem .8rem;margin-bottom:.4rem;}
+.video-note{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);font-weight:500;}
+.video-placeholder{background:var(--black);width:100%;aspect-ratio:9/16;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
+.video-placeholder video{width:100%;height:100%;object-fit:cover;display:block;}
+.video-caption{margin-top:.8rem;font-size:.72rem;color:var(--gray);line-height:1.6;font-style:italic;border-left:2px solid var(--lgray);padding-left:.8rem;}
+.video-caption code{font-size:.68rem;background:var(--lgray);padding:.1rem .4rem;color:var(--rust);font-family:monospace;}
+.video-quote-stack{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem;}
+.vq-card{background:var(--white);border:1px solid var(--lgray);padding:.9rem 1rem;cursor:pointer;transition:border-color .3s,transform .2s;}
+.vq-card:hover{border-color:var(--rust);transform:translateX(3px);}
+.vq-time{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:.3rem;}
+.vq-text{font-size:.78rem;color:#555;line-height:1.5;font-style:italic;margin:0;}
+.qa-num{font-family:'Playfair Display',serif;font-size:.65rem;font-weight:900;color:var(--white);background:var(--rust);width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-bottom:.7rem;letter-spacing:.05em;}
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:310;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(17,17,17,.98);z-index:290;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.mobile-nav.open{display:flex;}
+.mobile-nav button,.mobile-nav a{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.5rem);font-weight:700;color:var(--white);background:none;border:none;cursor:pointer;text-decoration:none;letter-spacing:.02em;transition:color .3s;}
+.mobile-nav button:hover,.mobile-nav a:hover{color:var(--yellow);}
+.mobile-nav .m-divider{width:40px;height:1px;background:rgba(255,255,255,.15);}
+.mobile-nav .m-sub{font-size:clamp(1rem,3vw,1.2rem) !important;color:rgba(255,255,255,.5) !important;font-family:'DM Sans',sans-serif !important;letter-spacing:.12em !important;text-transform:uppercase !important;}
+.mobile-nav .m-sub:hover{color:var(--yellow) !important;}
+
+@media(max-width:1024px){
+  .ananya-layout{grid-template-columns:1fr;padding:0 1.8rem;}
+  .ananya-interview-col{padding:3rem 0 4rem;border-right:none;border-bottom:1px solid var(--lgray);}
+  .ananya-video-col{padding:3rem 0 4rem;}
+  .video-sticky-wrapper{position:static;}
+  .video-placeholder{aspect-ratio:16/9;}
+}
+
 @media(max-width:900px){
   nav{padding:1.2rem 1.5rem;}
   nav.scrolled,nav.dark{padding:.9rem 1.5rem;}
   .nav-links{display:none;}
+  .hamburger{display:flex;}
   #hero-section{grid-template-columns:1fr;}
   .hero-left{min-height:60vh;padding:7rem 1.8rem 3rem;}
   .hero-right{padding:3rem 1.8rem 4rem;}
@@ -361,6 +467,15 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
   .mt,.mission-text{padding:3rem 1.8rem;}
   .story-pull{padding:3rem 1.8rem;flex-direction:column;gap:1.5rem;}
   .spl{width:60px;height:3px;}
+  .aboutme-section{grid-template-columns:1fr;}
+  .aboutme-images{padding:3rem 2rem;min-height:50vw;}
+  .ami-collage{max-width:280px;}
+  .aboutme-text{padding:3rem 1.8rem;}
+  .interview-hero{padding:7rem 1.8rem 3rem;}
+  .interview-body{padding:3rem 1.5rem;}
+  .int-pullquote{padding:3rem 2rem;}
+  .int-closer{padding:2rem 1.5rem;}
+  .ih-meta{flex-wrap:wrap;gap:1rem;}
 }
 </style>
 </head>
@@ -378,13 +493,33 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
         <button onclick="nav('cycle1')">Cycle 1</button>
         <button onclick="nav('cycle2')">Cycle 2</button>
         <button onclick="nav('cycle3')">Cycle 3</button>
+        <button onclick="nav('ananya')" style="color:var(--yellow) !important;border-top:1px solid rgba(255,255,255,.07);margin-top:.3rem;padding-top:.7rem">Ananya Interview</button>
       </div>
     </li>
     <li><button class="nbtn" onclick="nav('datalab')" data-page="datalab">Data Lab</button></li>
     <li><button class="nbtn" onclick="nav('reading')" data-page="reading">Reading</button></li>
     <li><button class="nbtn nav-cta" onclick="nav('subscribe')">Subscribe</button></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <button onclick="mobileGo('home')">Home</button>
+  <button onclick="mobileGo('about')">About</button>
+  <div class="m-divider"></div>
+  <button onclick="mobileGo('stories')">Stories</button>
+  <button class="m-sub" onclick="mobileGo('cycle1')">→ Cycle 1</button>
+  <button class="m-sub" onclick="mobileGo('cycle2')">→ Cycle 2</button>
+  <button class="m-sub" onclick="mobileGo('cycle3')">→ Cycle 3</button>
+  <button class="m-sub" onclick="mobileGo('ananya')" style="color:var(--yellow) !important;">→ Ananya Interview</button>
+  <div class="m-divider"></div>
+  <button onclick="mobileGo('datalab')">Data Lab</button>
+  <button onclick="mobileGo('reading')">Reading</button>
+  <button onclick="mobileGo('subscribe')" style="color:var(--yellow);">Subscribe ✦</button>
+</div>
 
 <!-- ════════ HOME ════════ -->
 <div class="page active" id="page-home">
@@ -445,11 +580,11 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
   <!-- EDITORIAL IMAGE STRIP -->
   <div class="editorial-strip">
     <div class="es-item">
-      <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Bharatanatyam performer in traditional costume" loading="lazy">
+      <img src="images/IMG_5445.jpg" alt="Bharatanatyam performer in traditional costume" loading="lazy">
       <div class="es-overlay"><span class="es-label">Bharatanatyam · The ancient form</span></div>
     </div>
     <div class="es-item">
-      <img src="images/IMG_5444.jpg" alt="Two classical dancers in dramatic composition" loading="lazy">
+      <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Two classical dancers in dramatic composition" loading="lazy">
       <div class="es-overlay"><span class="es-label">Field portrait · Delhi, 2025</span></div>
     </div>
     <div class="es-item">
@@ -466,7 +601,7 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
     </div>
     <div class="stories-grid">
       <div class="sc fade-up" onclick="nav('cycle1')">
-        <img class="card-img" src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Bharatanatyam performer" loading="lazy">
+        <img class="card-img" src="images/IMG_5445.jpg" alt="Bharatanatyam performer" loading="lazy">
         <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
         <div class="card-body"><span class="card-tag">Feature · Cycle 1</span><h3 class="card-title">When Kathak Became Confession: How Classical Dance Rewired Her Grief</h3><p class="card-exc">She had not wept in three years. Then her guru asked her to perform Bhairavi — and something finally broke open.</p></div>
       </div>
@@ -480,10 +615,11 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
         <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
         <div class="card-body"><span class="card-tag">Research · Cycle 2</span><h3 class="card-title">On Embodied Cognition: What Neuroscience Tells Us About Rhythm</h3><p class="card-exc">New research from IIT Bombay reveals how rhythmic movement synchronises the default mode network.</p></div>
       </div>
-      <div class="sc fade-up" onclick="nav('cycle3')">
-        <img class="card-img" src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra hand gesture in dance" loading="lazy">
-        <div class="card-overlay"><span class="overlay-read">Read Story →</span></div>
-        <div class="card-body"><span class="card-tag">Investigative · Cycle 3</span><h3 class="card-title">The Prescription That Isn't: Why Dance Therapy Remains Marginalised</h3><p class="card-exc">If dance heals, why isn't it prescribed? An investigation into institutional barriers between movement and medicine.</p></div>
+      <div class="sc fade-up" onclick="nav('ananya')" style="position:relative;">
+        <div style="position:absolute;top:1rem;left:1rem;z-index:10;background:var(--rust);color:var(--white);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.3rem .7rem;">Featured Interview</div>
+        <img class="card-img" src="images/WhatsApp Image 2026-03-08 at 13.10.00.jpeg" alt="Ananya Bala Interview" loading="lazy">
+        <div class="card-overlay"><span class="overlay-read">Read Interview →</span></div>
+        <div class="card-body"><span class="card-tag">Interview · Field Report</span><h3 class="card-title">Ananya Bala: Movement as Meaning</h3><p class="card-exc">She chose dance over a degree. Ananya Bala speaks about leaving engineering, building an entirely analog practice, and why presence — not performance — is the real discipline.</p></div>
       </div>
     </div>
   </section>
@@ -500,10 +636,37 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
 <div class="page" id="page-about">
   <div class="about-hero"><div class="ah-inner"><span class="pey">About & Ashtanga Marg</span><h1 class="ptitle">The <em>Mission</em><br>Behind the<br>Movement</h1></div></div>
 
+  <!-- ABOUT ME — PERSONAL -->
+  <div class="aboutme-section">
+    <div class="aboutme-images">
+      <div class="ami-collage fade-up">
+        <img class="ami-main" src="images/IMG_5438.png" alt="Vaishnavi Dembla performing on stage" loading="lazy">
+        <img class="ami-accent1" src="images/IMG_5445.jpg" alt="Classical dance" loading="lazy">
+        <img class="ami-accent2" src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra — the grammar of gesture" loading="lazy">
+        <span class="ami-label">Vaishnavi · On Stage</span>
+      </div>
+    </div>
+    <div class="aboutme-text">
+      <span class="pey">About Me</span>
+      <h2>The <em>Heartbeat</em><br>in the Noise</h2>
+      <div class="ami-rule"></div>
+      <div class="ami-body">
+        <p>My story with <strong>rhythm</strong> began at the age of three. Long before I could fully articulate my thoughts in words, I was a dancer. For nearly two decades, <strong>dance</strong> was my language, my joy, and my constant companion. But when I entered Bennett University as a first-year journalism student, that rhythm almost fell silent.</p>
+        <p>I got diagnosed with DNS — Deviated Nasal Septum — and severe allergies. The very act of <strong>breathing</strong>, which is so fundamental to life, became a struggle for me. On heavy medication and with a sudden drain on my physical stamina, I felt the weight of my life pulling me under. The simplest things — strength, endurance, daily routines — felt out of reach.</p>
+        <p>Yet, even when my body failed me, <strong>dance</strong> did not. My choreographer at Rivaaz, my dance club, stepped back into the studio — a curious, seeking space where the deadlines fall away. Waiting for music. The whole world shuts out. My breath may be laboured, but movement finds its sync perfectly.</p>
+        <p>I have learned the details; the precision of footwork, the held gestures, the facial expressions — <strong>dance</strong> has taken me far beyond the stage. Making a mistake isn't failure — it's an opportunity to correct it with grace. To remain calm in an emergency, to maintain performance despite technical glitches. The magic of <strong>human bonding</strong> — how a group of strangers can sync their bodies and souls until it's one single person.</p>
+        <p>This is not just my hobby. They saw I was different, yet returned. I knew more than just a dancer — I was an <strong>investigator</strong>. The truth I lived — relating to a dancer from Jaipur who called it their sanctuary, a real triumph, one able to continue despite everything — gives me inner peace and joy. Making me forget. I hope you feel it too.</p>
+        <p>Now, as a journalist and researcher, I am documenting not just my own story but those of others — the <strong>mental health</strong> revolution happening on dance floors, in studios, in the spaces where <strong>storytelling</strong> and movement intersect. <em>The Kinetic Cure</em> is that investigation made public.</p>
+      </div>
+      <div class="ami-sign"><div class="ami-sign-line"></div><span class="ami-sign-name">Vaishnavi Dembla · Journalist & Dancer</span></div>
+    </div>
+  </div>
+
+  <!-- PROJECT MISSION -->
   <div class="mission-split">
-    <div class="mi"><img src="images/IMG_5445.jpg" alt="Bharatanatyam dancer in performance" loading="lazy"></div>
+    <div class="mi"><img src="images/IMG_5444.jpg" alt="Classical dancers in performance" loading="lazy"></div>
     <div class="mt">
-      <span class="ml">The Mission</span>
+      <span class="ml">The Project</span>
       <h2 class="mh">Documenting dance.<br>Reporting the body.<br>Healing the record.</h2>
       <div class="mr"></div>
       <p class="mb">The Kinetic Cure is a multimedia research project conducted under the SANKALP guidelines at the Times School of Media. Our goal is to produce high-depth stories that explore the intersection of Society, Culture, and New Media through the medium of dance.</p>
@@ -734,8 +897,8 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
     </div>
     <div class="success-msg" id="succMsg">✦ Welcome to The Kinetic Cure. Your first dispatch arrives Friday.</div>
     <div class="social-row">
-      <a href="https://linkedin.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-      <a href="https://instagram.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/in/vaishnavi-dembla-75b84b405" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://www.instagram.com/the.kineticcure?igsh=MXQ3OWc3NTBqMzQyNg%3D%3D&utm_source=qr" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://twitter.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     </div>
   </div>
@@ -747,7 +910,229 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
   <div class="ty"><div class="tyi"><span class="tys">✦</span><h1 class="tyt">You're in the Movement</h1><p class="tysu">Your first dispatch arrives this Friday. In the meantime, explore the stories, dig into the data, and know that every subscriber makes this journalism possible.</p><button class="btn-primary" onclick="nav('home')">Return Home <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M1 6h14M9 1l6 5-6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div></div>
 </div>
 
-<!-- MODAL -->
+<!-- ════════ ANANYA BALA INTERVIEW ════════ -->
+<div class="page" id="page-ananya">
+
+  <!-- HERO -->
+  <div class="interview-hero">
+    <div class="ih-inner">
+      <div class="ih-kicker">
+        <span class="tag-interview">Field Interview</span>
+        <span class="tag-cycle">Cycle 2 · Human Element</span>
+      </div>
+      <h1 class="ih-title">Ananya Bala:<br><em>The 3rd Year Pivot</em></h1>
+      <p class="ih-sub">In the middle of Noida's tech-heavy academic circuit, where life is measured in lines of code and CGPA, Ananya Bala — Secretary of Rivaaz and 3rd-year B.Tech student — is finding a different kind of logic. She has been dancing since she was four. Dance isn't a distraction from her degree. It is the operating system that keeps her going.</p>
+      <div class="ih-meta">
+        <div class="ih-meta-item"><strong>Interviewed by</strong>Vaishnavi Dembla</div>
+        <div class="ih-meta-item"><strong>Subject</strong>Secretary, Rivaaz Dance Club</div>
+        <div class="ih-meta-item"><strong>Location</strong>Bennett University, Noida</div>
+        <div class="ih-meta-item"><strong>Published</strong>April 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT: INTERVIEW + STICKY VIDEO -->
+  <div style="background:var(--beige);">
+    <div class="ananya-layout">
+
+      <!-- LEFT: FULL INTERVIEW SCROLL -->
+      <div class="ananya-interview-col">
+
+        <!-- INTRO -->
+        <p class="int-intro">The 3rd year of a B.Tech programme is the pressure cooker year — the year most students drop their hobbies "to focus." Ananya Bala is doing the exact opposite. As Secretary of Rivaaz, Bennett University's dance club, she is leading workshops, building networks, and maintaining a 16-year dance practice in the middle of one of India's most demanding engineering programmes. When I sat down with her, I wanted to understand how she does it — and why she insists that the studio, not the screen, is where the real work happens.</p>
+
+        <!-- SECTION 1 -->
+        <h3 class="int-section-title">The 16-Year Anchor</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q1</div>
+          <p class="qa-q">You've been dancing since you were four. You are now in your 3rd year of B.Tech — a time when most students abandon their passions to survive their syllabus. After 16 years, when you step onto the wooden floor of the Rivaaz studio, what part of your four-year-old self do you reconnect with to handle the stress of adulthood?</p>
+          <div class="qa-a"><p>There's a version of me that has never grown up in that studio. She doesn't know about deadlines or CGPA or career anxiety. She just knows that when the music starts, your feet have to find the beat — and everything else falls away. When I step in, I find her again. She's the part of me that is not afraid of failing. She just tries again. That fearlessness is what I bring back to the lecture hall.</p><p>After 16 years, the practice has changed what I notice. I notice breath. I notice where I'm holding tension. I notice when I'm performing for others versus when I'm moving for myself. That kind of body awareness is what adulthood tries to strip away — and dance keeps returning it to me.</p></div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h3 class="int-section-title">Why Physical Presence Matters</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q2</div>
+          <p class="qa-q">You have a vast network and could easily organise Zoom workshops or YouTube tutorials. Why do you insist on bringing bodies into a physical room at Bennett? What is the "energy transfer" that happens in a physical workshop that simply cannot be replicated through a 30-second tutorial?</p>
+          <div class="qa-a"><p>There's something that happens when 20 people hit the same beat in the same room at the same time. The floor vibrates. You can feel it through your feet before you even register it mentally. That synchrony — that physical, collective pulse — is not transmissible through a screen. You can teach the steps on YouTube. You cannot teach what it feels like to be in the room.</p></div>
+        </div>
+
+        <!-- PULL QUOTE 1 -->
+        <div class="int-pullquote">
+          <p class="ipq-text">We don't bring dancers to Bennett to teach us how to look good on camera; we bring them to remind us how it feels to be human in a room full of other humans.</p>
+          <span class="ipq-attr">Ananya Bala · Rivaaz, Bennett University</span>
+        </div>
+
+        <!-- SECTION 3 -->
+        <h3 class="int-section-title">The Body's Evolution</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q3</div>
+          <p class="qa-q">Over 16 years, your body has grown, changed, and faced the fatigue of adulthood. I've personally struggled with DNS and stamina this year — have there been times in your journey where your body felt like it was failing you, and how did the rhythm help you negotiate with that physical pain?</p>
+          <div class="qa-a"><p>Yes. There were months in my second year where my body genuinely couldn't do what it had always done. Stamina crashes, joint pain, the exhaustion of back-to-back academic pressure. Dance felt impossible. But I went anyway — not to perform, just to be in the space. And even in those sessions, the rhythm did something. It gave me a container for the pain. A structure. It said: here is a beat, find it. You don't have to be excellent. Just find the beat.</p><p>That's the thing about a long practice: it becomes a relationship with your body that is more honest than almost anything else in your life. It shows you exactly where you are. It doesn't let you pretend. And eventually, it shows you a way through.</p></div>
+        </div>
+
+        <!-- IMAGE BREAK 1 -->
+        <img src="images/ananya dancing.jpeg" alt="Field portrait — the studio as sanctuary" loading="lazy" style="width:100%;height:340px;object-fit:cover;object-position:center 25%;display:block;filter:grayscale(12%);margin:2.5rem 0;">
+
+        <!-- SECTION 4 -->
+        <h3 class="int-section-title">Screen Time & The Studio</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q4</div>
+          <p class="qa-q">You spend hours staring at a screen for your B.Tech. When you dance, you have to be entirely "analog" — you have to feel the floor and hear the music. Is Rivaaz a "digital detox" for you, or is it something deeper than just a break?</p>
+          <div class="qa-a"><p>It's deeper than a detox. A detox implies you're just resting from something. This is more like returning to your original language. Screens ask you to receive — to consume, to scroll, to respond. Dance asks you to produce — to generate something with your body, to commit to a movement before you can think about whether it's right. That reversal of direction is not a break. It's a restoration.</p><p>The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p></div>
+        </div>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q5</div>
+          <p class="qa-q">If you had to describe the "Kinetic Cure" in one single hand gesture or Mudra, what would it be — and what does it represent for the people of Noida and Jaipur who are struggling to find their rhythm?</p>
+          <div class="qa-a"><p>It would be the Abhaya mudra — the open palm facing outward. In classical tradition, it means "fear not." But to me it also means: I am here. I am present. I am not behind a screen performing. I am here, in this room, with you. For anyone in Noida who is drowning in deadlines, or in Jaipur where the pressure to perform academically is immense — that gesture is a reminder that your presence, your physical being in a room, is enough. You don't have to produce anything. Just be here.</p></div>
+        </div>
+
+        <!-- PULL QUOTE 2 -->
+        <div class="int-pullquote">
+          <p class="ipq-text">The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p>
+          <span class="ipq-attr">Ananya Bala · On the screen-body divide</span>
+        </div>
+
+        <!-- SECTION 5 -->
+        <h3 class="int-section-title">The Shift in Student Intent</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q6</div>
+          <p class="qa-q">As Secretary, you see students from all years joining Rivaaz. Do you notice a difference in why people join now? Are they looking to be "performers" for the university stage, or are you seeing more students who are just looking for a way to survive the mental pressure of their degrees?</p>
+          <div class="qa-a"><p>It's changed visibly. In the first year, you mostly get students who want the stage — the lights, the applause, the reel footage. By 3rd year, something shifts. They come quieter. They come because they're running out of ways to cope. The academic pressure, the placement anxiety, the social isolation of a tech campus. They come to Rivaaz because it's the one hour in the week where no one is evaluating their performance against a metric.</p><p>That shift in intent — from performance to survival — is exactly what this project is documenting. And it tells you everything about what mental health support looks like on an Indian engineering campus right now.</p></div>
+        </div>
+
+        <!-- SECTION 6 -->
+        <h3 class="int-section-title">The Collective Pulse</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q7</div>
+          <p class="qa-q">There's a moment in a Rivaaz rehearsal where everyone's feet hit the floor at the same time. As a choreographer, what does that "sync" do to the energy of the room? Is that the moment where individual anxiety turns into collective strength?</p>
+          <div class="qa-a"><p>That moment is everything. It's the reason I do this. You can feel when it happens — the room shifts. There's a sound change, a density change. People who came in carrying their individual weights suddenly become one organism. The anxiety that each person carried in doesn't disappear, but it stops being <em>individual</em>. It becomes shared. And shared weight is different. It's manageable. It's even beautiful.</p><p>I think that's what community has always meant — before social media flattened it into metrics. A room of people moving together, held accountable to each other by the beat. That's not a metaphor. That's actual, physiological co-regulation.</p></div>
+        </div>
+
+        <!-- IMAGE BREAK 2 -->
+        <img src="images/IMG_5440.png" alt="Bharatanatyam — the oldest conversation between body and beat" loading="lazy" style="width:100%;height:340px;object-fit:cover;object-position:center 20%;display:block;filter:grayscale(10%);margin:2.5rem 0;">
+
+        <!-- SECTION 7 -->
+        <h3 class="int-section-title">The Future of the Niche</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q8</div>
+          <p class="qa-q">As someone heading into the tech industry, do you think our generation will need these "analog" dance spaces more than ever to survive the future of AI and digital isolation?</p>
+          <div class="qa-a"><p>Not just more than ever — I think they'll become emergency infrastructure. When AI handles most of our productive work, what do we do with our bodies? What do we do with our need for presence, for rhythm, for the experience of being physically witnessed by another human? Dance studios, classical institutes, physical workshops — they're going to be the last spaces where you can be a full person rather than a user, a consumer, or a data point.</p><p>I think the people who will be most mentally healthy in 20 years are the ones who maintained a practice that required their physical presence. Not a subscription. A practice.</p></div>
+        </div>
+
+        <!-- PULL QUOTE 3 -->
+        <div class="int-pullquote">
+          <p class="ipq-text">Dance studios will become emergency infrastructure. They'll be the last spaces where you can be a full person rather than a user, a consumer, or a data point.</p>
+          <span class="ipq-attr">Ananya Bala · On the future of analog spaces</span>
+        </div>
+
+        <!-- SECTION 8 -->
+        <h3 class="int-section-title">Dopamine vs. Discipline</h3>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q9</div>
+          <p class="qa-q">Social media has condensed dance into 30-second "perfect" clips. As someone who has practised for 16 years, do you feel this "30-second culture" is stripping away the actual human substance of the art?</p>
+          <div class="qa-a"><p>It's not just stripping the substance — it's inverting the purpose. Dance was always about process. The 10,000 hours. The bad days in the studio. The muscle memory built across years of repetition. When you reduce that to a 30-second reel, you're not sharing the art. You're sharing the surface of it. And the problem is that the surface is mistaken for the thing itself.</p><p>New students come in having watched hundreds of Reels and they think they understand Kathak. They know what it looks like. They have no idea what it feels like. That gap — between looking and feeling — is where the human substance lives. And it cannot be captured in a clip.</p></div>
+        </div>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q10</div>
+          <p class="qa-q">In your 16 years, who has been your "observer"? Does having an audience that knows your struggle — like family — change the way you dance compared to an audience of strangers on the internet?</p>
+          <div class="qa-a"><p>My mother has seen every rehearsal, every bad day, every breakthrough. She knows what a good performance costs me. When I dance for her, I'm not performing — I'm reporting. This is what the week was. This is what I worked through. That witness relationship is sacred. It's what gives the art weight.</p><p>An audience of strangers on the internet sees the outcome. My mother sees the journey. Those are completely different forms of witnessing — and only one of them tells the truth about who you are as a dancer.</p></div>
+        </div>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q11</div>
+          <p class="qa-q">If you had to choose between a video that gets 1 million views and a 1-hour workshop that changes the mental state of just 10 students — which one represents the "Real Substance" of Rivaaz to you?</p>
+          <div class="qa-a"><p>The workshop. Without question. One million views is a number. Ten students who leave the studio lighter than they arrived — that's a consequence. That's something that echoes in their week, in their bodies, in how they sit in a lecture the next morning. No algorithm tracks that. No analytics dashboard measures it. But it's real in a way that views are not.</p><p>Rivaaz exists for that room. Not for the reel.</p></div>
+        </div>
+
+        <!-- PULL QUOTE 4 -->
+        <div class="int-pullquote">
+          <p class="ipq-text">Rivaaz exists for that room. Not for the reel. Ten students who leave lighter than they arrived — that's real in a way that a million views are not.</p>
+          <span class="ipq-attr">Ananya Bala · On substance vs. scale</span>
+        </div>
+
+        <div class="qa-block fade-up">
+          <div class="qa-num">Q12</div>
+          <p class="qa-q">Do you think our generation is gravitating more towards modern workshop culture and the social media chase of views and likes instead of traditional Kathak classes and institutes? And how does that affect the mental health of young people today?</p>
+          <div class="qa-a"><p>Yes, and it's costing us. Workshop culture gives you a taste — a single session, a certificate, a shareable moment. Traditional institutes give you a relationship — with a guru, with a form, with your own body over time. The depth is incomparable. But depth requires commitment, and commitment is harder to sell than a weekend workshop.</p><p>The mental health consequence is this: workshops give you a high. They don't build a floor. And when the semester gets brutal, when the anxiety peaks at 3am before a submission, what do you go back to? You need a floor. You need something you have built over years that holds you when everything else is collapsing. That's what a real practice is. That's what social media can't give you — and what traditional institutes, for all their rigidity, can.</p></div>
+        </div>
+
+        <!-- CLOSING -->
+        <div class="int-closer">
+          Ananya Bala is a 3rd-year B.Tech student at Bennett University, Noida, and the Secretary of Rivaaz, the university's dance club. She has been dancing since the age of four. This interview was conducted as part of <em>The Kinetic Cure</em> project — a SANKALP investigation into the political economy of dance and mental health in India's tech cities.
+        </div>
+
+        <!-- NEXT STORY NAV -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:3rem;border-top:1px solid var(--lgray);margin-top:2rem;">
+          <button onclick="nav('stories')" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">← Back to All Stories</button>
+          <button onclick="nav('cycle1')" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">Cycle 1 Stories →</button>
+        </div>
+
+      </div><!-- end interview col -->
+
+      <!-- RIGHT: STICKY VIDEO PANEL -->
+      <div class="ananya-video-col">
+        <div class="video-sticky-wrapper">
+          <div class="video-label">
+            <span class="video-tag">Interview Recording</span>
+            <span class="video-note">Ananya Bala · Bennett University</span>
+          </div>
+          <!-- VIDEO PLACEHOLDER — replace src with your video file or embed -->
+          <div class="video-placeholder" id="videoPlaceholder">
+            <video
+              id="interviewVideo"
+              controls
+              preload="metadata"
+              poster="images/WhatsApp Image 2026-04-30 at 03.22.11.jpeg"
+              style="width:100%;display:block;background:#000;"
+            >
+              <!-- Add your video source here: -->
+              <source src="images/ananya-interview.mp4" type="video/mp4">
+              <!-- Fallback message if browser can't play -->
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+          <div class="video-caption">
+            <p>Rivaaz on stage.</p>
+          </div>
+          <!-- QUICK QUOTE CARDS below video -->
+          <div class="video-quote-stack">
+            <div class="vq-card" onclick="document.getElementById('interviewVideo').currentTime=0;document.getElementById('interviewVideo').play();">
+              <span class="vq-time">00:00</span>
+              <p class="vq-text">On the 16-year anchor</p>
+            </div>
+            <div class="vq-card">
+              <span class="vq-time">On presence</span>
+              <p class="vq-text">"We don't bring dancers to teach how to look good on camera..."</p>
+            </div>
+            <div class="vq-card">
+              <span class="vq-time">On the future</span>
+              <p class="vq-text">"Dance studios will become emergency infrastructure."</p>
+            </div>
+          </div>
+        </div>
+      </div><!-- end video col -->
+
+    </div><!-- end ananya-layout -->
+  </div>
+
+  <footer><div class="fi">
+    <div><span class="flogo">The <span>Kinetic</span> Cure</span><p class="ftag">Field interview · Ananya Bala · Rivaaz, Bennett University · April 2025</p></div>
+    <div><span class="fct">Stories</span><ul class="flinks"><li><button onclick="nav('stories')">All Stories</button></li><li><button onclick="nav('cycle1')">Cycle 1</button></li><li><button onclick="nav('cycle2')">Cycle 2</button></li></ul></div>
+    <div><span class="fct">Platform</span><ul class="flinks"><li><button onclick="nav('home')">Home</button></li><li><button onclick="nav('about')">About</button></li><li><button onclick="nav('datalab')">Data Lab</button></li></ul></div>
+    <div><span class="fct">Connect</span><ul class="flinks"><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://instagram.com" target="_blank">Instagram</a></li></ul></div>
+  </div><div class="fb2"><span class="fcp">© 2025 The Kinetic Cure</span><span class="ai-badge">Human journalism. Zero algorithmic generation.</span></div></footer>
+</div>
 <div class="modal-overlay" id="modal" onclick="closeM(event)">
   <div class="modal-box">
     <button class="mc-close" onclick="closeM(null)">✕</button>
@@ -757,8 +1142,25 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
 </div>
 
 <script>
+// ── HAMBURGER ──
+function toggleMobileNav(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileNav');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function mobileGo(p){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileNav');
+  h.classList.remove('open');
+  m.classList.remove('open');
+  document.body.style.overflow='';
+  nav(p);
+}
+
 // ── ROUTER ──
-const pages={home:'page-home',about:'page-about',stories:'page-stories',cycle1:'page-cycle1',cycle2:'page-cycle2',cycle3:'page-cycle3',datalab:'page-datalab',reading:'page-reading',subscribe:'page-subscribe',thankyou:'page-thankyou'};
+const pages={home:'page-home',about:'page-about',stories:'page-stories',cycle1:'page-cycle1',cycle2:'page-cycle2',cycle3:'page-cycle3',datalab:'page-datalab',reading:'page-reading',subscribe:'page-subscribe',thankyou:'page-thankyou',ananya:'page-ananya'};
 function nav(p){
   if(!pages[p])return;
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active','page-enter'));
@@ -785,11 +1187,13 @@ initObs();
 
 // ── STORIES HUB TABS ──
 const cdata={
-  1:[{tag:'Feature · Cycle 1',title:'When Kathak Became Confession',exc:'She had not wept in three years. Then her guru asked her to perform Bhairavi — and something finally broke open.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle1'},
+  1:[{tag:'Featured Interview · Cycle 1',title:'Ananya Bala: The 3rd Year Pivot',exc:'The Secretary of Rivaaz on 16 years of dance, the pressure-cooker B.Tech year, and why physical presence cannot be replaced by a 30-second tutorial.',img:'images/vaishnavi-dancing.png',pg:'ananya'},
+     {tag:'Feature · Cycle 1',title:'When Kathak Became Confession',exc:'She had not wept in three years. Then her guru asked her to perform Bhairavi — and something finally broke open.',img:'images/IMG_5445.jpg',pg:'cycle1'},
      {tag:'Field Report · Cycle 1',title:'The Veterans Who Found Stillness in Movement',exc:'A Delhi-based trauma therapist integrates contemporary movement into PTSD recovery.',img:'images/IMG_5444.jpg',pg:'cycle1'},
      {tag:'Portrait · Cycle 1',title:'Ashtanga Marg and the Studio That Refused to Be Silent',exc:'Inside the dance programme that put mental health at its curriculum\'s centre.',img:'images/0b36725ac5f704ac91ada08043156b1f.jpg',pg:'cycle1'}],
-  2:[{tag:'Research · Cycle 2',title:'On Embodied Cognition: What Neuroscience Tells Us',exc:'New research from IIT Bombay reveals how rhythmic movement synchronises the default mode network.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle2'},
-     {tag:'Interview · Cycle 2',title:'The Psychiatrist Who Prescribes Dance',exc:'Dr. Meenakshi Rao has been quietly recommending Kathak to her patients for a decade.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle2'}],
+  2:[{tag:'Featured Interview · Cycle 2',title:'Ananya Bala: Movement as Meaning',exc:'She left engineering for dance — not for applause, but for presence. A conversation about analog discipline and individual anxiety.',img:'images/vaishnavi-dancing.png',pg:'ananya'},
+     {tag:'Research · Cycle 2',title:'On Embodied Cognition: What Neuroscience Tells Us',exc:'New research from IIT Bombay reveals how rhythmic movement synchronises the default mode network.',img:'images/PHOTO-2026-04-30-03-42-07.jpg',pg:'cycle2'},
+     {tag:'Interview · Cycle 2',title:'The Psychiatrist Who Prescribes Dance',exc:'Dr. Meenakshi Rao has been quietly recommending Kathak to her patients for a decade.',img:'images/IMG_5445.jpg',pg:'cycle2'}],
   3:[{tag:'Investigative · Cycle 3',title:'The Prescription That Isn\'t',exc:'If dance heals, why isn\'t it prescribed? An investigation into institutional barriers.',img:'images/IMG_5444.jpg',pg:'cycle3'},
      {tag:'Essay · Cycle 3',title:'Against the Wellness Industrial Complex',exc:'When dance gets packaged and sold as wellness, what radical potential is lost?',img:'images/0b36725ac5f704ac91ada08043156b1f.jpg',pg:'cycle3'}]
 };
