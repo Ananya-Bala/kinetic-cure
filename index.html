@@ -37,7 +37,7 @@ nav.scrolled,nav.dark{background:rgba(17,17,17,.97);backdrop-filter:blur(12px);p
 /* HERO */
 #hero-section{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
 .hero-left{background:var(--black);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden;}
-.hero-left::before{content:'';position:absolute;inset:0;background:url('images/_\ \(12\).jpeg') center/cover;opacity:.38;transition:transform 8s ease;}
+.hero-left::before{content:'';position:absolute;inset:0;background:url('images/IMG_5444.jpg') center/cover;opacity:.38;transition:transform 8s ease;}
 .hero-left:hover::before{transform:scale(1.04);}
 .hero-left::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.85) 30%,rgba(17,17,17,.3) 100%);}
 .hero-lc{position:relative;z-index:2;}
@@ -392,25 +392,216 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
   .int-closer{padding:2rem 1.5rem;}
 }
 
-/* RESPONSIVE */
-/* ANANYA TWO-COLUMN LAYOUT */
-.ananya-layout{display:grid;grid-template-columns:1fr 360px;gap:0;align-items:start;max-width:1200px;margin:0 auto;padding:0 3rem;}
-.ananya-interview-col{padding:5rem 4rem 6rem 0;border-right:1px solid var(--lgray);}
-.ananya-video-col{padding:4rem 0 6rem 3rem;}
-.video-sticky-wrapper{position:sticky;top:90px;}
-.video-label{margin-bottom:1rem;}
-.video-tag{display:inline-block;background:var(--rust);color:var(--white);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.35rem .8rem;margin-bottom:.4rem;}
-.video-note{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);font-weight:500;}
-.video-placeholder{background:var(--black);width:100%;aspect-ratio:9/16;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.2);}
-.video-placeholder video{width:100%;height:100%;object-fit:cover;display:block;}
-.video-caption{margin-top:.8rem;font-size:.72rem;color:var(--gray);line-height:1.6;font-style:italic;border-left:2px solid var(--lgray);padding-left:.8rem;}
-.video-caption code{font-size:.68rem;background:var(--lgray);padding:.1rem .4rem;color:var(--rust);font-family:monospace;}
-.video-quote-stack{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem;}
-.vq-card{background:var(--white);border:1px solid var(--lgray);padding:.9rem 1rem;cursor:pointer;transition:border-color .3s,transform .2s;}
-.vq-card:hover{border-color:var(--rust);transform:translateX(3px);}
-.vq-time{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rust);font-weight:600;display:block;margin-bottom:.3rem;}
-.vq-text{font-size:.78rem;color:#555;line-height:1.5;font-style:italic;margin:0;}
-.qa-num{font-family:'Playfair Display',serif;font-size:.65rem;font-weight:900;color:var(--white);background:var(--rust);width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-bottom:.7rem;letter-spacing:.05em;}
+ /* RESPONSIVE */
+/* ANANYA TWO-COLUMN LAYOUT — kept for backward compat */
+.ananya-layout{display:block;}
+.ananya-interview-col,.ananya-video-col{display:none;}/* hidden — replaced by new editorial layout */
+
+/* ══ ANANYA EDITORIAL PAGE ══ */
+.read-progress{position:fixed;top:0;left:0;height:3px;background:var(--yellow);z-index:999;width:0%;transition:width .1s linear;pointer-events:none;}
+.an-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--black);}
+.an-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.42) contrast(1.1);transition:transform 12s ease;}
+.an-hero:hover .an-hero-img{transform:scale(1.04);}
+.an-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.98) 15%,rgba(17,17,17,.25) 70%,transparent 100%);}
+.an-hero-content{position:relative;z-index:2;padding:0 5rem 5rem;}
+.an-kicker-row{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
+.an-tag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:.4rem 1rem;}
+.an-tag-main{background:var(--rust);color:var(--white);}
+.an-tag-sub{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);}
+.an-tag-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.25);}
+.an-hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,7rem);font-weight:900;color:var(--white);line-height:.95;margin-bottom:1.5rem;letter-spacing:-.02em;}
+.an-hero-title em{font-style:italic;color:var(--yellow);}
+.an-hero-deck{font-size:clamp(.9rem,1.5vw,1.15rem);line-height:1.7;color:rgba(255,255,255,.55);max-width:640px;font-weight:300;margin-bottom:2.5rem;}
+.an-hero-meta{display:flex;flex-wrap:wrap;gap:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12);}
+.an-meta-item strong{display:block;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);font-weight:600;margin-bottom:.3rem;}
+.an-meta-item span{font-size:.8rem;color:rgba(255,255,255,.5);}
+.an-scroll-cue{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;margin-top:2.5rem;}
+.an-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--yellow),transparent);animation:sp 2s ease-in-out infinite;}
+.an-scroll-text{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.an-byline-strip{background:var(--beige);padding:2rem 5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--lgray);}
+.an-byline-left{display:flex;align-items:center;gap:1.2rem;}
+.an-byline-av{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--rust);}
+.an-byline-name{font-size:.78rem;font-weight:600;color:var(--black);}
+.an-byline-role{font-size:.68rem;color:var(--gray);font-weight:300;}
+.an-reading-time{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+.an-opening{padding:7rem 0;background:var(--black);text-align:center;position:relative;overflow:hidden;}
+.an-opening::before{content:'"';font-family:'Playfair Display',serif;font-size:50vw;color:rgba(255,255,255,.02);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);line-height:.8;pointer-events:none;}
+.an-big-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.8rem);font-style:italic;color:var(--white);line-height:1.2;max-width:900px;margin:0 auto;padding:0 4rem;font-weight:300;position:relative;z-index:1;}
+.an-big-quote::before{content:'\201C';color:var(--yellow);font-size:1.2em;line-height:0;vertical-align:-.2em;}
+.an-big-quote::after{content:'\201D';color:var(--yellow);font-size:1.2em;line-height:0;vertical-align:-.2em;}
+.an-bq-attr{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2.5rem;display:block;}
+.an-split{display:grid;gap:0;background:var(--beige);}
+.an-split-ta{grid-template-columns:1.15fr 0.85fr;}
+.an-split-at{grid-template-columns:0.85fr 1.15fr;}
+.an-split-text{padding:6rem 5rem;display:flex;flex-direction:column;justify-content:center;}
+.an-split-img{position:relative;overflow:hidden;min-height:520px;}
+.an-split-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease;filter:contrast(1.05);}
+.an-split-img:hover img{transform:scale(1.04);}
+.an-split-img::after{content:'';position:absolute;inset:0;background:rgba(17,17,17,.08);}
+.an-split-img .img-caption{position:absolute;bottom:1.2rem;left:1.5rem;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:2;font-style:italic;}
+.an-section-label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem;}
+.an-section-label::after{content:'';flex:1;height:1px;background:var(--lgray);}
+.an-section-h{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;color:var(--black);}
+.an-body-text{font-size:.95rem;line-height:2;color:#3a3a3a;font-weight:300;}
+.an-body-text p{margin-bottom:1.4rem;}
+.an-body-text p:first-child::first-letter{font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:900;color:var(--rust);float:left;line-height:.82;margin:.05em .12em 0 0;}
+.an-body-text strong{font-weight:600;color:var(--black);}
+.an-body-text em{font-style:italic;color:var(--rust);}
+.an-qa-block{background:var(--white);padding:4rem 5rem;border-left:3px solid var(--yellow);}
+.an-qa-item{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--lgray);}
+.an-qa-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.an-q-num{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);font-weight:700;margin-bottom:.5rem;display:inline-block;background:rgba(192,86,45,.08);padding:.2rem .6rem;}
+.an-q-text{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--black);margin-bottom:.9rem;line-height:1.5;}
+.an-a-text{font-size:.92rem;line-height:1.95;color:#444;font-weight:300;}
+.an-a-text p{margin-bottom:.9rem;}
+.an-pullquote{padding:8rem 4rem;background:var(--black);text-align:center;position:relative;overflow:hidden;}
+.an-pq-inner{position:relative;z-index:2;max-width:820px;margin:0 auto;}
+.an-pq-rule{width:48px;height:2px;background:var(--yellow);margin:0 auto 3rem;}
+.an-pq-text{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-style:italic;color:var(--white);line-height:1.2;font-weight:300;}
+.an-pq-attr{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2rem;display:block;}
+.an-cinematic{position:relative;height:70vh;overflow:hidden;}
+.an-cinematic img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 12s ease;filter:contrast(1.05)brightness(.88);}
+.an-cinematic:hover img{transform:scale(1.04);}
+.an-cinematic-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(17,17,17,.75) 100%);}
+.an-cin-cap{position:absolute;bottom:3rem;left:5rem;right:5rem;display:flex;align-items:flex-end;justify-content:space-between;z-index:2;}
+.an-cin-cap-text{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.an-cin-cap-num{font-family:'Playfair Display',serif;font-size:10rem;font-weight:900;color:rgba(255,255,255,.04);line-height:1;}
+.an-collage{
+  padding:5rem 4rem;
+  background:var(--beige);
+  display:grid;
+  grid-template-columns:60% 40%;
+  gap:24px;
+  align-items:stretch;
+}
+.an-col-main{
+  position:relative;
+  overflow:hidden;
+  height:700px;
+  border-radius:4px;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  opacity:0;
+  transform:translateY(20px);
+  animation:colFadeIn .8s ease .1s forwards;
+}
+.an-col-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  height:700px;
+}
+.an-col-sm{
+  position:relative;
+  overflow:hidden;
+  flex:1;
+  border-radius:4px;
+  box-shadow:0 12px 36px rgba(0,0,0,.13);
+  opacity:0;
+  transform:translateY(20px);
+}
+.an-col-sm:first-child{animation:colFadeIn .8s ease .25s forwards;}
+.an-col-sm:last-child{animation:colFadeIn .8s ease .4s forwards;}
+@keyframes colFadeIn{to{opacity:1;transform:translateY(0);}}
+.an-col-main img,.an-col-sm img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  transition:transform .8s cubic-bezier(.25,.46,.45,.94),filter .5s ease;
+  filter:grayscale(8%);
+}
+.an-col-main:hover img,.an-col-sm:hover img{transform:scale(1.06);filter:grayscale(0%);}
+.an-col-main::after,.an-col-sm::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(17,17,17,.7) 0%,rgba(17,17,17,.1) 40%,transparent 65%);
+  pointer-events:none;
+  transition:opacity .4s;
+}
+.an-col-main:hover::after,.an-col-sm:hover::after{opacity:.7;}
+.an-col-label{
+  position:absolute;
+  bottom:1.2rem;left:1.4rem;
+  z-index:2;
+  font-size:.58rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  font-weight:500;
+  display:flex;align-items:center;gap:.6rem;
+  font-family:'DM Sans',sans-serif;
+}
+.an-col-label::before{
+  content:'';
+  width:18px;height:1px;
+  background:var(--yellow);
+  flex-shrink:0;
+}
+/* Tablet */
+@media(max-width:1024px) and (min-width:601px){
+  .an-collage{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    gap:16px;
+    padding:3rem 2rem;
+  }
+  .an-col-main{height:55vw;min-height:320px;}
+  .an-col-right{flex-direction:row;height:auto;}
+  .an-col-sm{height:35vw;min-height:220px;flex:1;}
+}
+/* Mobile */
+@media(max-width:600px){
+  .an-collage{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:2rem 1.2rem;
+  }
+  .an-col-main{height:80vw;min-height:260px;}
+  .an-col-right{flex-direction:column;height:auto;}
+  .an-col-sm{height:65vw;min-height:200px;}
+}
+.an-video-block{background:var(--black);padding:5rem;}
+.an-video-hd{margin-bottom:2rem;}
+.an-video-tag{display:inline-block;background:var(--rust);color:var(--white);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:.35rem .9rem;margin-bottom:.7rem;}
+.an-video-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:.6rem;}
+.an-video-desc{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7;max-width:640px;font-weight:300;}
+.an-video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.5);}
+.an-video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.an-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.an-video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;background:rgba(17,17,17,.7);cursor:pointer;transition:background .3s;}
+.an-video-ph:hover{background:rgba(17,17,17,.45);}
+.an-play{width:72px;height:72px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;transition:transform .3s;}
+.an-video-ph:hover .an-play{transform:scale(1.12);}
+.an-play svg{margin-left:5px;}
+.an-video-ph span{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+.an-qi-row{display:grid;grid-template-columns:1fr 1fr;background:var(--beige);}
+.an-qi-quote{padding:5rem;background:var(--yellow);display:flex;flex-direction:column;justify-content:center;}
+.an-qi-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.8vw,2.6rem);font-style:italic;color:var(--black);line-height:1.25;font-weight:300;margin-bottom:1.5rem;}
+.an-qi-attr{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(17,17,17,.5);}
+.an-qi-img{overflow:hidden;min-height:400px;}
+.an-qi-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s;}
+.an-qi-img:hover img{transform:scale(1.04);}
+.an-gallery-sec{padding:5rem 4rem;background:var(--beige);}
+.an-gallery-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;}
+.an-gallery-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:900;color:var(--black);}
+.an-gallery-sub{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);}
+.an-masonry{columns:3;column-gap:1rem;}
+.an-m-item{break-inside:avoid;margin-bottom:1rem;position:relative;overflow:hidden;cursor:pointer;}
+.an-m-item img{width:100%;display:block;transition:transform .6s,filter .4s;filter:grayscale(18%);}
+.an-m-item:hover img{transform:scale(1.05);filter:grayscale(0%);}
+.an-m-item::after{content:'';position:absolute;inset:0;background:rgba(17,17,17,0);transition:background .4s;}
+.an-m-item:hover::after{background:rgba(17,17,17,.18);}
+.an-m-label{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;background:linear-gradient(to top,rgba(17,17,17,.85),transparent);transform:translateY(100%);transition:transform .4s;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.an-m-item:hover .an-m-label{transform:translateY(0);}
+.an-closing-block{background:var(--black);padding:7rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.an-closing-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.85;font-weight:300;}
+.an-closing-text strong{font-style:normal;color:var(--yellow);font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:1rem;}
+.an-closing-img{position:relative;overflow:hidden;}
+.an-closing-img img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:sepia(20%);}
+.an-closing-img::before{content:'';position:absolute;inset:0;border:2px solid rgba(244,208,63,.25);z-index:1;pointer-events:none;}
+.an-next-row{background:var(--beige);display:flex;align-items:center;justify-content:space-between;padding:3rem 5rem;border-top:1px solid var(--lgray);}
+.an-next-btn{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;display:inline-flex;align-items:center;gap:.6rem;transition:gap .3s;}
+.an-next-btn:hover{gap:1rem;}
 /* HAMBURGER */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:310;}
 .hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s;}
@@ -476,6 +667,25 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
   .int-pullquote{padding:3rem 2rem;}
   .int-closer{padding:2rem 1.5rem;}
   .ih-meta{flex-wrap:wrap;gap:1rem;}
+  /* Ananya editorial mobile */
+  .an-hero-content{padding:0 1.8rem 4rem;}
+  .an-split-ta,.an-split-at{grid-template-columns:1fr;}
+  .an-split-img{min-height:60vw;}
+  .an-split-text{padding:3rem 1.8rem;}
+  .an-big-quote{padding:0 1.8rem;font-size:clamp(1.5rem,6vw,2.5rem);}
+  .an-opening{padding:5rem 0;}
+  .an-pullquote{padding:5rem 2rem;}
+  .an-video-block{padding:3rem 1.8rem;}
+  .an-qa-block{padding:3rem 1.8rem;}
+  .an-qi-row{grid-template-columns:1fr;}
+  .an-qi-quote{padding:3.5rem 1.8rem;}
+  .an-masonry{columns:2;}
+  .an-gallery-sec{padding:4rem 1.8rem;}
+  .an-closing-block{grid-template-columns:1fr;gap:3rem;padding:5rem 1.8rem;}
+  .an-next-row{padding:2.5rem 1.8rem;flex-direction:column;gap:1.5rem;}
+  .an-byline-strip{padding:2rem 1.8rem;flex-direction:column;gap:1.5rem;align-items:flex-start;}
+  .an-cin-cap{left:1.8rem;right:1.8rem;}
+  .an-cinematic{height:50vw;min-height:280px;}
 }
 </style>
 </head>
@@ -584,7 +794,7 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
       <div class="es-overlay"><span class="es-label">Bharatanatyam · The ancient form</span></div>
     </div>
     <div class="es-item">
-      <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Two classical dancers in dramatic composition" loading="lazy">
+      <img src="images/IMG_5444.jpg" alt="Two classical dancers in dramatic composition" loading="lazy">
       <div class="es-overlay"><span class="es-label">Field portrait · Delhi, 2025</span></div>
     </div>
     <div class="es-item">
@@ -617,7 +827,7 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
       </div>
       <div class="sc fade-up" onclick="nav('ananya')" style="position:relative;">
         <div style="position:absolute;top:1rem;left:1rem;z-index:10;background:var(--rust);color:var(--white);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;padding:.3rem .7rem;">Featured Interview</div>
-        <img class="card-img" src="images/WhatsApp Image 2026-03-08 at 13.10.00.jpeg" alt="Ananya Bala Interview" loading="lazy">
+        <img class="card-img" src="images/vaishnavi-dancing.png" alt="Ananya Bala Interview" loading="lazy">
         <div class="card-overlay"><span class="overlay-read">Read Interview →</span></div>
         <div class="card-body"><span class="card-tag">Interview · Field Report</span><h3 class="card-title">Ananya Bala: Movement as Meaning</h3><p class="card-exc">She chose dance over a degree. Ananya Bala speaks about leaving engineering, building an entirely analog practice, and why presence — not performance — is the real discipline.</p></div>
       </div>
@@ -703,8 +913,8 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
     <h2>Project Documents</h2>
     <p class="dl-sub">Download the full research proposal and SANKALP conversation transcript</p>
     <div class="dl-btns">
-      <a href="/assets/proposal.pdf" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Project Proposal PDF</a>
-      <a href="/assets/sankalp.pdf" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download SANKALP Transcript PDF</a>
+      <a href="images/The Kinetic Cure Proposal.pages" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download Project Proposal PDF</a>
+      <a href="images/Sankalp guideline .pdf" target="_blank" class="btn-dl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download SANKALP Transcript PDF</a>
     </div>
   </div>
 
@@ -897,8 +1107,8 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
     </div>
     <div class="success-msg" id="succMsg">✦ Welcome to The Kinetic Cure. Your first dispatch arrives Friday.</div>
     <div class="social-row">
-      <a href="https://www.linkedin.com/in/vaishnavi-dembla-75b84b405" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-      <a href="https://www.instagram.com/the.kineticcure?igsh=MXQ3OWc3NTBqMzQyNg%3D%3D&utm_source=qr" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://linkedin.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://instagram.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://twitter.com" target="_blank" class="socl"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     </div>
   </div>
@@ -913,217 +1123,339 @@ footer{background:var(--black);padding:3.5rem 5rem;border-top:1px solid rgba(255
 <!-- ════════ ANANYA BALA INTERVIEW ════════ -->
 <div class="page" id="page-ananya">
 
-  <!-- HERO -->
-  <div class="interview-hero">
-    <div class="ih-inner">
-      <div class="ih-kicker">
-        <span class="tag-interview">Field Interview</span>
-        <span class="tag-cycle">Cycle 2 · Human Element</span>
+  <!-- READING PROGRESS BAR -->
+  <div class="read-progress" id="readProgress"></div>
+
+  <!-- ① CINEMATIC HERO -->
+  <div class="an-hero">
+    <img class="an-hero-img" src="images/IMG_5445.jpg" alt="Ananya Bala — The 3rd Year Pivot" loading="eager">
+    <div class="an-hero-grad"></div>
+    <div class="an-hero-content">
+      <div class="an-kicker-row">
+        <span class="an-tag an-tag-main">Field Interview</span>
+        <span class="an-tag-dot"></span>
+        <span class="an-tag an-tag-sub">Cycle 1 · Human Element</span>
+        <span class="an-tag-dot"></span>
+        <span class="an-tag an-tag-sub">Rivaaz · Bennett University</span>
       </div>
-      <h1 class="ih-title">Ananya Bala:<br><em>The 3rd Year Pivot</em></h1>
-      <p class="ih-sub">In the middle of Noida's tech-heavy academic circuit, where life is measured in lines of code and CGPA, Ananya Bala — Secretary of Rivaaz and 3rd-year B.Tech student — is finding a different kind of logic. She has been dancing since she was four. Dance isn't a distraction from her degree. It is the operating system that keeps her going.</p>
-      <div class="ih-meta">
-        <div class="ih-meta-item"><strong>Interviewed by</strong>Vaishnavi Dembla</div>
-        <div class="ih-meta-item"><strong>Subject</strong>Secretary, Rivaaz Dance Club</div>
-        <div class="ih-meta-item"><strong>Location</strong>Bennett University, Noida</div>
-        <div class="ih-meta-item"><strong>Published</strong>April 2025</div>
+      <h1 class="an-hero-title">Ananya Bala:<br><em>The 3rd Year Pivot</em></h1>
+      <p class="an-hero-deck">In the middle of Noida's tech-heavy academic circuit, where life is measured in lines of code and CGPA, one student has found a different kind of logic. She has been dancing since she was four. This is her story.</p>
+      <div class="an-hero-meta">
+        <div class="an-meta-item"><strong>By</strong><span>Vaishnavi Dembla</span></div>
+        <div class="an-meta-item"><strong>Subject</strong><span>Secretary, Rivaaz Dance Club</span></div>
+        <div class="an-meta-item"><strong>Location</strong><span>Bennett University, Noida</span></div>
+        <div class="an-meta-item"><strong>Published</strong><span>April 2025</span></div>
+      </div>
+      <div class="an-scroll-cue">
+        <div class="an-scroll-line"></div>
+        <span class="an-scroll-text">Scroll to read</span>
       </div>
     </div>
   </div>
 
-  <!-- TWO-COLUMN LAYOUT: INTERVIEW + STICKY VIDEO -->
-  <div style="background:var(--beige);">
-    <div class="ananya-layout">
+  <!-- BYLINE STRIP -->
+  <div class="an-byline-strip">
+    <div class="an-byline-left">
+      <img class="an-byline-av" src="images/vaishnavi-dancing.png" alt="Vaishnavi Dembla">
+      <div>
+        <div class="an-byline-name">Vaishnavi Dembla</div>
+        <div class="an-byline-role">Journalist & Researcher · The Kinetic Cure</div>
+      </div>
+    </div>
+    <span class="an-reading-time">12 min read · 12 questions</span>
+  </div>
 
-      <!-- LEFT: FULL INTERVIEW SCROLL -->
-      <div class="ananya-interview-col">
+  <!-- ② OPENING QUOTE -->
+  <div class="an-opening fade-up">
+    <p class="an-big-quote">Movement became my language before words did. The studio is the one place where no one evaluates you against a metric.</p>
+    <span class="an-bq-attr">Ananya Bala · Secretary, Rivaaz</span>
+  </div>
 
-        <!-- INTRO -->
-        <p class="int-intro">The 3rd year of a B.Tech programme is the pressure cooker year — the year most students drop their hobbies "to focus." Ananya Bala is doing the exact opposite. As Secretary of Rivaaz, Bennett University's dance club, she is leading workshops, building networks, and maintaining a 16-year dance practice in the middle of one of India's most demanding engineering programmes. When I sat down with her, I wanted to understand how she does it — and why she insists that the studio, not the screen, is where the real work happens.</p>
+  <!-- ③ SECTION 1 — INTRO SPLIT (text left, image right) -->
+  <div class="an-split an-split-ta fade-up">
+    <div class="an-split-text">
+      <span class="an-section-label">The 3rd Year Pivot</span>
+      <h2 class="an-section-h">The pressure cooker year — and the student doing the opposite</h2>
+      <div class="an-body-text">
+        <p>The 3rd year of a B.Tech programme is the year most students drop their hobbies "to focus." Ananya Bala is doing the exact opposite. As Secretary of Rivaaz, Bennett University's dance club, she is leading workshops, building networks, and maintaining a 16-year dance practice in the middle of one of India's most demanding engineering programmes.</p>
+        <p>By documenting her story, <em>The Kinetic Cure</em> is investigating the industrial management of mental health through dance — fulfilling the SANKALP requirement of exploring the political economy of culture in a tech-driven city like Noida. What follows is that conversation.</p>
+      </div>
+    </div>
+    <div class="an-split-img">
+      <img src="images/Screenshot 2026-05-01 at 12.51.33 AM.png" alt="Classical dance — the body as the medium" loading="lazy">
+      <span class="img-caption">Field Portrait · Delhi, 2025</span>
+    </div>
+  </div>
 
-        <!-- SECTION 1 -->
-        <h3 class="int-section-title">The 16-Year Anchor</h3>
+  <!-- ④ Q1–Q2 BLOCK -->
+  <div class="an-qa-block fade-up">
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 01 · The 16-Year Anchor</span>
+      <p class="an-q-text">You've been dancing since you were four. After 16 years, when you step onto the wooden floor of the Rivaaz studio, what part of your four-year-old self do you reconnect with to handle the stress of adulthood?</p>
+      <div class="an-a-text"><p>There's a version of me that has never grown up in that studio. She doesn't know about deadlines or CGPA or career anxiety. She just knows that when the music starts, your feet have to find the beat — and everything else falls away. When I step in, I find her again. She's the part of me that is not afraid of failing. She just tries again.</p><p>After 16 years, the practice has changed what I notice. I notice breath. I notice where I'm holding tension. I notice when I'm performing for others versus when I'm moving for myself. That kind of body awareness is what adulthood tries to strip away — and dance keeps returning it to me.</p></div>
+    </div>
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 02 · Why Physical Presence Matters</span>
+      <p class="an-q-text">You have a vast network and could easily organise Zoom workshops or YouTube tutorials. Why do you insist on bringing bodies into a physical room at Bennett?</p>
+      <div class="an-a-text"><p>There's something that happens when 20 people hit the same beat in the same room at the same time. The floor vibrates. You can feel it through your feet before you even register it mentally. That synchrony — that physical, collective pulse — is not transmissible through a screen. You can teach the steps on YouTube. You cannot teach what it feels like to be in the room.</p></div>
+    </div>
+  </div>
 
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q1</div>
-          <p class="qa-q">You've been dancing since you were four. You are now in your 3rd year of B.Tech — a time when most students abandon their passions to survive their syllabus. After 16 years, when you step onto the wooden floor of the Rivaaz studio, what part of your four-year-old self do you reconnect with to handle the stress of adulthood?</p>
-          <div class="qa-a"><p>There's a version of me that has never grown up in that studio. She doesn't know about deadlines or CGPA or career anxiety. She just knows that when the music starts, your feet have to find the beat — and everything else falls away. When I step in, I find her again. She's the part of me that is not afraid of failing. She just tries again. That fearlessness is what I bring back to the lecture hall.</p><p>After 16 years, the practice has changed what I notice. I notice breath. I notice where I'm holding tension. I notice when I'm performing for others versus when I'm moving for myself. That kind of body awareness is what adulthood tries to strip away — and dance keeps returning it to me.</p></div>
+  <!-- ⑤ PULL QUOTE 1 -->
+  <div class="an-pullquote fade-up">
+    <div class="an-pq-inner">
+      <div class="an-pq-rule"></div>
+      <p class="an-pq-text">We don't bring dancers to Bennett to teach us how to look good on camera; we bring them to remind us how it feels to be human in a room full of other humans.</p>
+      <span class="an-pq-attr">Ananya Bala · Rivaaz, Bennett University</span>
+    </div>
+  </div>
+
+  <!-- ⑥ COLLAGE — 3 images -->
+  <div class="an-collage fade-up">
+    <div class="an-col-main">
+      <img src="images/IMG_5445.jpg" alt="Bharatanatyam — the body as sanctuary" loading="lazy">
+      <span class="an-col-label">Bharatanatyam · The ancient form</span>
+    </div>
+    <div class="an-col-sm">
+      <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra — grammar of gesture" loading="lazy">
+      <span class="an-col-label">Mudra · Language of the hands</span>
+    </div>
+    <div class="an-col-sm">
+      <img src="images/PHOTO-2026-05-01-00-40-18.jpg" alt="Classical duo — performance" loading="lazy">
+      <span class="an-col-label">Field Portrait · Delhi 2025</span>
+    </div>
+  </div>
+
+  <!-- ⑦ Q3–Q5 SPLIT (image left, text right) -->
+  <div class="an-split an-split-at fade-up">
+    <div class="an-split-img" style="order:1">
+      <img src="images/IMG_5438.png" alt="Movement on stage — Vaishnavi Dembla" loading="lazy">
+      <span class="img-caption">On Stage · Bennett University</span>
+    </div>
+    <div class="an-split-text" style="order:2">
+      <span class="an-section-label">The Body's Evolution</span>
+      <h2 class="an-section-h">When the body feels like it's failing you</h2>
+      <div class="an-body-text">
+        <p>There were months where my body genuinely couldn't do what it had always done. Stamina crashes, joint pain, the exhaustion of back-to-back academic pressure. Dance felt impossible. But I went anyway — not to perform, just to be in the space.</p>
+        <p>Even in those sessions, the rhythm did something. It gave me a container for the pain. A structure. It said: here is a beat, find it. You don't have to be excellent. Just find the beat. After 16 years, the practice becomes a relationship with your body that is more honest than almost anything else in your life. It doesn't let you pretend.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑧ VIDEO BLOCK 1 — Interview Recording -->
+  <div class="an-video-block fade-up">
+    <div class="an-video-hd">
+      <span class="an-video-tag">From Bennett University</span>
+      <h3 class="an-video-title">Rivaaz in action</h3>
+      <p class="an-video-desc">A visual archive of movement, discipline, and tradition—capturing Rivaaz beyond the stage, in rehearsals, performances, and the moments where art becomes identity.</p>
+    </div>
+    <div class="an-video-wrap" id="vid1wrap">
+      <video id="vid1" controls preload="metadata" poster="images/IMG_5445.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <source src="images/ananya-interview.mp4" type="video/mp4">
+      </video>
+      <div class="an-video-ph" id="vid1ph" onclick="playVid('vid1','vid1ph')">
+        <div class="an-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--black)"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <span>Play Interview — 12 min</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑨ Q4–Q5 QA BLOCK -->
+  <div class="an-qa-block fade-up">
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 04 · Screen Time & The Studio</span>
+      <p class="an-q-text">You spend hours staring at a screen for your B.Tech. When you dance, you have to be entirely "analog." Is Rivaaz a "digital detox" for you, or is it something deeper?</p>
+      <div class="an-a-text"><p>It's deeper than a detox. A detox implies you're just resting from something. This is more like returning to your original language. Screens ask you to receive — to consume, to scroll, to respond. Dance asks you to produce — to generate something with your body, to commit to a movement before you can think about whether it's right. That reversal of direction is not a break. It's a restoration.</p><p>The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p></div>
+    </div>
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 05 · The Mudra</span>
+      <p class="an-q-text">If you had to describe the "Kinetic Cure" in one single hand gesture or Mudra, what would it be?</p>
+      <div class="an-a-text"><p>It would be the Abhaya mudra — the open palm facing outward. In classical tradition, it means "fear not." But to me it also means: I am here. I am present. I am not behind a screen performing. I am here, in this room, with you. For anyone in Noida who is drowning in deadlines — that gesture is a reminder that your physical being in a room is enough.</p></div>
+    </div>
+  </div>
+
+  <!-- ⑩ CINEMATIC FULL-WIDTH IMAGE -->
+  <div class="an-cinematic fade-up">
+    <img src="images/PHOTO-2026-05-01-01-02-18.jpg" alt="Two classical dancers — collective pulse" loading="lazy">
+    <div class="an-cinematic-overlay"></div>
+    <div class="an-cin-cap">
+      <span class="an-cin-cap-text">The Collective Pulse · Field Documentation · Delhi, 2025</span>
+      <span class="an-cin-cap-num">06</span>
+    </div>
+  </div>
+
+  <!-- ⑪ Q6–Q7 SPLIT (text left, image right) -->
+  <div class="an-split an-split-ta fade-up">
+    <div class="an-split-text">
+      <span class="an-section-label">The Shift in Student Intent</span>
+      <h2 class="an-section-h">From performance to survival</h2>
+      <div class="an-body-text">
+        <p><strong>Q6 — As Secretary, you see students from all years. Do you notice a difference in why people join now?</strong></p>
+        <p>It's changed visibly. In the first year, you mostly get students who want the stage — the lights, the applause, the reel footage. By 3rd year, something shifts. They come quieter. They come because they're running out of ways to cope. The academic pressure, the placement anxiety, the social isolation of a tech campus. They come to Rivaaz because it's the one hour in the week where no one is evaluating their performance against a metric.</p>
+        <p><strong>Q7 — There's a moment in a Rivaaz rehearsal where everyone's feet hit the floor at the same time. What does that sync do?</strong></p>
+        <p>That moment is everything. It's the reason I do this. People who came in carrying their individual weights suddenly become one organism. The anxiety that each person carried in doesn't disappear, but it stops being individual. It becomes shared. And shared weight is different. It's manageable. It's even beautiful.</p>
+      </div>
+    </div>
+    <div class="an-split-img">
+      <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra — the grammar of gesture" loading="lazy">
+      <span class="img-caption">Mudra · The Grammar of Gesture</span>
+    </div>
+  </div>
+
+  <!-- ⑫ PULL QUOTE 2 -->
+  <div class="an-pullquote fade-up">
+    <div class="an-pq-inner">
+      <div class="an-pq-rule"></div>
+      <p class="an-pq-text">The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p>
+      <span class="an-pq-attr">Ananya Bala · On the screen-body divide</span>
+    </div>
+  </div>
+
+  <!-- ⑬ VIDEO BLOCK 2 — Behind the Scenes -->
+  <div class="an-video-block fade-up" style="background:#0a0a0a;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+      <div>
+        <span class="an-video-tag" style="background:var(--yellow);color:var(--black);">Behind the Scenes</span>
+        <h3 class="an-video-title" style="margin-top:.7rem;">The Rivaaz Rehearsal Floor</h3>
+        <p class="an-video-desc">A behind-the-scenes look at a Rivaaz workshop session — the collective sync that Ananya describes as "the moment where individual anxiety turns into collective strength."</p>
+        <blockquote style="border-left:2px solid var(--yellow);padding-left:1.2rem;margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,.5);font-size:1rem;line-height:1.6;">Dance wasn't performance. It was survival.</blockquote>
+      </div>
+      <div class="an-video-wrap" id="vid2wrap" style="position:relative;padding-bottom:56.25%;height:0;">
+        <video id="vid2" controls preload="metadata" poster="images/IMG_5444.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          <source src="images/IMG_5451.mp4" type="video/mp4">
+        </video>
+        <div class="an-video-ph" id="vid2ph" onclick="playVid('vid2','vid2ph')">
+          <div class="an-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--black)"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span>Behind the Scenes</span>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <!-- SECTION 2 -->
-        <h3 class="int-section-title">Why Physical Presence Matters</h3>
+  <!-- ⑭ Q8–Q9 QA BLOCK -->
+  <div class="an-qa-block fade-up">
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 08 · The Future of the Niche</span>
+      <p class="an-q-text">As someone heading into the tech industry, do you think our generation will need these "analog" dance spaces more than ever to survive the future of AI and digital isolation?</p>
+      <div class="an-a-text"><p>Not just more than ever — I think they'll become emergency infrastructure. When AI handles most of our productive work, what do we do with our bodies? Dance studios, classical institutes, physical workshops — they're going to be the last spaces where you can be a full person rather than a user, a consumer, or a data point. The people who will be most mentally healthy in 20 years are the ones who maintained a practice that required their physical presence. Not a subscription. A practice.</p></div>
+    </div>
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 09 · Dopamine vs. Discipline</span>
+      <p class="an-q-text">Social media has condensed dance into 30-second "perfect" clips. As someone who has practised for 16 years, do you feel this "30-second culture" is stripping away the actual human substance of the art?</p>
+      <div class="an-a-text"><p>It's not just stripping the substance — it's inverting the purpose. Dance was always about process. The 10,000 hours. The bad days in the studio. The muscle memory built across years of repetition. When you reduce that to a 30-second reel, you're not sharing the art. You're sharing the surface of it. New students come in having watched hundreds of Reels and they think they understand Kathak. They know what it looks like. They have no idea what it feels like.</p></div>
+    </div>
+  </div>
 
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q2</div>
-          <p class="qa-q">You have a vast network and could easily organise Zoom workshops or YouTube tutorials. Why do you insist on bringing bodies into a physical room at Bennett? What is the "energy transfer" that happens in a physical workshop that simply cannot be replicated through a 30-second tutorial?</p>
-          <div class="qa-a"><p>There's something that happens when 20 people hit the same beat in the same room at the same time. The floor vibrates. You can feel it through your feet before you even register it mentally. That synchrony — that physical, collective pulse — is not transmissible through a screen. You can teach the steps on YouTube. You cannot teach what it feels like to be in the room.</p></div>
-        </div>
+  <!-- ⑮ QUOTE + IMAGE ROW -->
+  <div class="an-qi-row fade-up">
+    <div class="an-qi-quote">
+      <p class="an-qi-q">Dance studios will become emergency infrastructure — the last spaces where you can be a full person rather than a user, a consumer, or a data point.</p>
+      <span class="an-qi-attr">Ananya Bala · On AI and the future of analog spaces</span>
+    </div>
+    <div class="an-qi-img">
+      <img src="images/PHOTO-2026-05-01-01-05-55.jpg" alt="Movement — the analog choice" loading="lazy">
+    </div>
+  </div>
 
-        <!-- PULL QUOTE 1 -->
-        <div class="int-pullquote">
-          <p class="ipq-text">We don't bring dancers to Bennett to teach us how to look good on camera; we bring them to remind us how it feels to be human in a room full of other humans.</p>
-          <span class="ipq-attr">Ananya Bala · Rivaaz, Bennett University</span>
-        </div>
+  <!-- ⑯ Q10–Q12 QA BLOCK -->
+  <div class="an-qa-block fade-up">
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 10 · The Observer</span>
+      <p class="an-q-text">In your 16 years, who has been your "observer"? Does having an audience that knows your struggle change the way you dance?</p>
+      <div class="an-a-text"><p>My mother has seen every rehearsal, every bad day, every breakthrough. She knows what a good performance costs me. When I dance for her, I'm not performing — I'm reporting. This is what the week was. This is what I worked through. That witness relationship is sacred. An audience of strangers on the internet sees the outcome. My mother sees the journey. Those are completely different forms of witnessing — and only one of them tells the truth about who you are as a dancer.</p></div>
+    </div>
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 11 · Real Substance</span>
+      <p class="an-q-text">If you had to choose between a video that gets 1 million views and a 1-hour workshop that changes the mental state of just 10 students — which represents the "Real Substance" of Rivaaz?</p>
+      <div class="an-a-text"><p>The workshop. Without question. One million views is a number. Ten students who leave the studio lighter than they arrived — that's a consequence. That's something that echoes in their week, in their bodies, in how they sit in a lecture the next morning. No algorithm tracks that. No analytics dashboard measures it. But it's real in a way that views are not. <strong>Rivaaz exists for that room. Not for the reel.</strong></p></div>
+    </div>
+    <div class="an-qa-item">
+      <span class="an-q-num">Question 12 · Traditional vs. Workshop Culture</span>
+      <p class="an-q-text">Do you think our generation is gravitating more towards modern workshop culture and the social media chase of views instead of traditional Kathak classes? How does that affect the mental health of young people?</p>
+      <div class="an-a-text"><p>Yes, and it's costing us. Workshop culture gives you a taste — a single session, a certificate, a shareable moment. Traditional institutes give you a relationship — with a guru, with a form, with your own body over time. The depth is incomparable. The mental health consequence is this: workshops give you a high. They don't build a floor. And when the semester gets brutal, when the anxiety peaks at 3am before a submission, what do you go back to? You need a floor. You need something you have built over years that holds you when everything else is collapsing. That's what a real practice is.</p></div>
+    </div>
+  </div>
 
-        <!-- SECTION 3 -->
-        <h3 class="int-section-title">The Body's Evolution</h3>
+  <!-- ⑰ FINAL PULL QUOTE -->
+  <div class="an-pullquote fade-up">
+    <div class="an-pq-inner">
+      <div class="an-pq-rule"></div>
+      <p class="an-pq-text">Rivaaz exists for that room. Not for the reel.</p>
+      <span class="an-pq-attr">Ananya Bala · On substance vs. scale</span>
+    </div>
+  </div>
 
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q3</div>
-          <p class="qa-q">Over 16 years, your body has grown, changed, and faced the fatigue of adulthood. I've personally struggled with DNS and stamina this year — have there been times in your journey where your body felt like it was failing you, and how did the rhythm help you negotiate with that physical pain?</p>
-          <div class="qa-a"><p>Yes. There were months in my second year where my body genuinely couldn't do what it had always done. Stamina crashes, joint pain, the exhaustion of back-to-back academic pressure. Dance felt impossible. But I went anyway — not to perform, just to be in the space. And even in those sessions, the rhythm did something. It gave me a container for the pain. A structure. It said: here is a beat, find it. You don't have to be excellent. Just find the beat.</p><p>That's the thing about a long practice: it becomes a relationship with your body that is more honest than almost anything else in your life. It shows you exactly where you are. It doesn't let you pretend. And eventually, it shows you a way through.</p></div>
-        </div>
+  <!-- ⑱ VIDEO BLOCK 3 — Performance Clip -->
+  <div class="an-video-block fade-up">
+    <div class="an-video-hd">
+      <span class="an-video-tag" style="background:var(--black);border:1px solid rgba(255,255,255,.15);">Performance Clip</span>
+      <h3 class="an-video-title">Ananya on Stage</h3>
+      <p class="an-video-desc">A performance compilation of Ananya Bala — the collective sync that transforms individual anxiety into shared movement.</p>
+    </div>
+    <div class="an-video-wrap" id="vid3wrap">
+      <video id="vid3" controls preload="metadata" poster="images/vaishnavi-dancing.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <source src="images/VID_20260430_123845_675_bsl_2.mp4" type="video/mp4">
+      </video>
+      <div class="an-video-ph" id="vid3ph" onclick="playVid('vid3','vid3ph')">
+        <div class="an-play"><svg width="22" height="22" viewBox="0 0 24 24" fill="var(--black)"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <span>Watch Performance</span>
+      </div>
+    </div>
+  </div>
 
-        <!-- IMAGE BREAK 1 -->
-        <img src="images/ananya dancing.jpeg" alt="Field portrait — the studio as sanctuary" loading="lazy" style="width:100%;height:340px;object-fit:cover;object-position:center 25%;display:block;filter:grayscale(12%);margin:2.5rem 0;">
+  <!-- ⑲ MASONRY GALLERY -->
+  <div class="an-gallery-sec fade-up">
+    <div class="an-gallery-hd">
+      <div>
+        <h3 class="an-gallery-title">Field Gallery</h3>
+        <p class="an-gallery-sub">Photography from the reporting process · April 2025</p>
+      </div>
+      <span style="font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);">Hover to reveal</span>
+    </div>
+    <div class="an-masonry">
+      <div class="an-m-item">
+        <img src="images/IMG_5445.jpg" alt="Bharatanatyam performer" loading="lazy">
+        <span class="an-m-label">Bharatanatyam · The classical form</span>
+      </div>
+      <div class="an-m-item">
+        <img src="images/0b36725ac5f704ac91ada08043156b1f.jpg" alt="Mudra hands" loading="lazy">
+        <span class="an-m-label">Mudra · Language of gesture</span>
+      </div>
+      <div class="an-m-item">
+        <img src="images/IMG_5444.jpg" alt="Classical duo" loading="lazy">
+        <span class="an-m-label">Classical duo · Field portrait</span>
+      </div>
+      <div class="an-m-item">
+        <img src="images/vaishnavi-dancing.png" alt="On stage" loading="lazy">
+        <span class="an-m-label">On stage · Bennett University</span>
+      </div>
+      <div class="an-m-item">
+        <img src="images/PHOTO-2026-04-30-03-42-07.jpg" alt="Movement" loading="lazy">
+        <span class="an-m-label">Movement · Never stop moving</span>
+      </div>
+      <div class="an-m-item">
+        <img src="images/IMG_5445.jpg" alt="Performer portrait" loading="lazy" style="filter:sepia(40%)grayscale(20%);">
+        <span class="an-m-label">Archive · Sepia study</span>
+      </div>
+    </div>
+  </div>
 
-        <!-- SECTION 4 -->
-        <h3 class="int-section-title">Screen Time & The Studio</h3>
+  <!-- ⑳ EDITORIAL CLOSING -->
+  <div class="an-closing-block fade-up">
+    <div class="an-closing-text">
+      <strong>Closing Note · The Kinetic Cure</strong>
+      Ananya Bala is a 3rd-year B.Tech student at Bennett University, Noida, and the Secretary of Rivaaz, the university's dance club. She has been dancing since the age of four. This interview was conducted as part of <em>The Kinetic Cure</em> project — a SANKALP investigation into the political economy of dance and mental health in India's tech cities. She was preparing for a rehearsal when this conversation ended. She did not look back.
+    </div>
+    <div class="an-closing-img">
+      <img src="images/IMG_5445.jpg" alt="Closing portrait — the practice continues" loading="lazy">
+    </div>
+  </div>
 
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q4</div>
-          <p class="qa-q">You spend hours staring at a screen for your B.Tech. When you dance, you have to be entirely "analog" — you have to feel the floor and hear the music. Is Rivaaz a "digital detox" for you, or is it something deeper than just a break?</p>
-          <div class="qa-a"><p>It's deeper than a detox. A detox implies you're just resting from something. This is more like returning to your original language. Screens ask you to receive — to consume, to scroll, to respond. Dance asks you to produce — to generate something with your body, to commit to a movement before you can think about whether it's right. That reversal of direction is not a break. It's a restoration.</p><p>The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p></div>
-        </div>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q5</div>
-          <p class="qa-q">If you had to describe the "Kinetic Cure" in one single hand gesture or Mudra, what would it be — and what does it represent for the people of Noida and Jaipur who are struggling to find their rhythm?</p>
-          <div class="qa-a"><p>It would be the Abhaya mudra — the open palm facing outward. In classical tradition, it means "fear not." But to me it also means: I am here. I am present. I am not behind a screen performing. I am here, in this room, with you. For anyone in Noida who is drowning in deadlines, or in Jaipur where the pressure to perform academically is immense — that gesture is a reminder that your presence, your physical being in a room, is enough. You don't have to produce anything. Just be here.</p></div>
-        </div>
-
-        <!-- PULL QUOTE 2 -->
-        <div class="int-pullquote">
-          <p class="ipq-text">The studio is where I remember that I have a body. Eight hours of screens and you forget. You become a floating head. Rivaaz puts you back in your legs.</p>
-          <span class="ipq-attr">Ananya Bala · On the screen-body divide</span>
-        </div>
-
-        <!-- SECTION 5 -->
-        <h3 class="int-section-title">The Shift in Student Intent</h3>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q6</div>
-          <p class="qa-q">As Secretary, you see students from all years joining Rivaaz. Do you notice a difference in why people join now? Are they looking to be "performers" for the university stage, or are you seeing more students who are just looking for a way to survive the mental pressure of their degrees?</p>
-          <div class="qa-a"><p>It's changed visibly. In the first year, you mostly get students who want the stage — the lights, the applause, the reel footage. By 3rd year, something shifts. They come quieter. They come because they're running out of ways to cope. The academic pressure, the placement anxiety, the social isolation of a tech campus. They come to Rivaaz because it's the one hour in the week where no one is evaluating their performance against a metric.</p><p>That shift in intent — from performance to survival — is exactly what this project is documenting. And it tells you everything about what mental health support looks like on an Indian engineering campus right now.</p></div>
-        </div>
-
-        <!-- SECTION 6 -->
-        <h3 class="int-section-title">The Collective Pulse</h3>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q7</div>
-          <p class="qa-q">There's a moment in a Rivaaz rehearsal where everyone's feet hit the floor at the same time. As a choreographer, what does that "sync" do to the energy of the room? Is that the moment where individual anxiety turns into collective strength?</p>
-          <div class="qa-a"><p>That moment is everything. It's the reason I do this. You can feel when it happens — the room shifts. There's a sound change, a density change. People who came in carrying their individual weights suddenly become one organism. The anxiety that each person carried in doesn't disappear, but it stops being <em>individual</em>. It becomes shared. And shared weight is different. It's manageable. It's even beautiful.</p><p>I think that's what community has always meant — before social media flattened it into metrics. A room of people moving together, held accountable to each other by the beat. That's not a metaphor. That's actual, physiological co-regulation.</p></div>
-        </div>
-
-        <!-- IMAGE BREAK 2 -->
-        <img src="images/IMG_5440.png" alt="Bharatanatyam — the oldest conversation between body and beat" loading="lazy" style="width:100%;height:340px;object-fit:cover;object-position:center 20%;display:block;filter:grayscale(10%);margin:2.5rem 0;">
-
-        <!-- SECTION 7 -->
-        <h3 class="int-section-title">The Future of the Niche</h3>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q8</div>
-          <p class="qa-q">As someone heading into the tech industry, do you think our generation will need these "analog" dance spaces more than ever to survive the future of AI and digital isolation?</p>
-          <div class="qa-a"><p>Not just more than ever — I think they'll become emergency infrastructure. When AI handles most of our productive work, what do we do with our bodies? What do we do with our need for presence, for rhythm, for the experience of being physically witnessed by another human? Dance studios, classical institutes, physical workshops — they're going to be the last spaces where you can be a full person rather than a user, a consumer, or a data point.</p><p>I think the people who will be most mentally healthy in 20 years are the ones who maintained a practice that required their physical presence. Not a subscription. A practice.</p></div>
-        </div>
-
-        <!-- PULL QUOTE 3 -->
-        <div class="int-pullquote">
-          <p class="ipq-text">Dance studios will become emergency infrastructure. They'll be the last spaces where you can be a full person rather than a user, a consumer, or a data point.</p>
-          <span class="ipq-attr">Ananya Bala · On the future of analog spaces</span>
-        </div>
-
-        <!-- SECTION 8 -->
-        <h3 class="int-section-title">Dopamine vs. Discipline</h3>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q9</div>
-          <p class="qa-q">Social media has condensed dance into 30-second "perfect" clips. As someone who has practised for 16 years, do you feel this "30-second culture" is stripping away the actual human substance of the art?</p>
-          <div class="qa-a"><p>It's not just stripping the substance — it's inverting the purpose. Dance was always about process. The 10,000 hours. The bad days in the studio. The muscle memory built across years of repetition. When you reduce that to a 30-second reel, you're not sharing the art. You're sharing the surface of it. And the problem is that the surface is mistaken for the thing itself.</p><p>New students come in having watched hundreds of Reels and they think they understand Kathak. They know what it looks like. They have no idea what it feels like. That gap — between looking and feeling — is where the human substance lives. And it cannot be captured in a clip.</p></div>
-        </div>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q10</div>
-          <p class="qa-q">In your 16 years, who has been your "observer"? Does having an audience that knows your struggle — like family — change the way you dance compared to an audience of strangers on the internet?</p>
-          <div class="qa-a"><p>My mother has seen every rehearsal, every bad day, every breakthrough. She knows what a good performance costs me. When I dance for her, I'm not performing — I'm reporting. This is what the week was. This is what I worked through. That witness relationship is sacred. It's what gives the art weight.</p><p>An audience of strangers on the internet sees the outcome. My mother sees the journey. Those are completely different forms of witnessing — and only one of them tells the truth about who you are as a dancer.</p></div>
-        </div>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q11</div>
-          <p class="qa-q">If you had to choose between a video that gets 1 million views and a 1-hour workshop that changes the mental state of just 10 students — which one represents the "Real Substance" of Rivaaz to you?</p>
-          <div class="qa-a"><p>The workshop. Without question. One million views is a number. Ten students who leave the studio lighter than they arrived — that's a consequence. That's something that echoes in their week, in their bodies, in how they sit in a lecture the next morning. No algorithm tracks that. No analytics dashboard measures it. But it's real in a way that views are not.</p><p>Rivaaz exists for that room. Not for the reel.</p></div>
-        </div>
-
-        <!-- PULL QUOTE 4 -->
-        <div class="int-pullquote">
-          <p class="ipq-text">Rivaaz exists for that room. Not for the reel. Ten students who leave lighter than they arrived — that's real in a way that a million views are not.</p>
-          <span class="ipq-attr">Ananya Bala · On substance vs. scale</span>
-        </div>
-
-        <div class="qa-block fade-up">
-          <div class="qa-num">Q12</div>
-          <p class="qa-q">Do you think our generation is gravitating more towards modern workshop culture and the social media chase of views and likes instead of traditional Kathak classes and institutes? And how does that affect the mental health of young people today?</p>
-          <div class="qa-a"><p>Yes, and it's costing us. Workshop culture gives you a taste — a single session, a certificate, a shareable moment. Traditional institutes give you a relationship — with a guru, with a form, with your own body over time. The depth is incomparable. But depth requires commitment, and commitment is harder to sell than a weekend workshop.</p><p>The mental health consequence is this: workshops give you a high. They don't build a floor. And when the semester gets brutal, when the anxiety peaks at 3am before a submission, what do you go back to? You need a floor. You need something you have built over years that holds you when everything else is collapsing. That's what a real practice is. That's what social media can't give you — and what traditional institutes, for all their rigidity, can.</p></div>
-        </div>
-
-        <!-- CLOSING -->
-        <div class="int-closer">
-          Ananya Bala is a 3rd-year B.Tech student at Bennett University, Noida, and the Secretary of Rivaaz, the university's dance club. She has been dancing since the age of four. This interview was conducted as part of <em>The Kinetic Cure</em> project — a SANKALP investigation into the political economy of dance and mental health in India's tech cities.
-        </div>
-
-        <!-- NEXT STORY NAV -->
-        <div style="display:flex;justify-content:space-between;align-items:center;padding-top:3rem;border-top:1px solid var(--lgray);margin-top:2rem;">
-          <button onclick="nav('stories')" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">← Back to All Stories</button>
-          <button onclick="nav('cycle1')" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">Cycle 1 Stories →</button>
-        </div>
-
-      </div><!-- end interview col -->
-
-      <!-- RIGHT: STICKY VIDEO PANEL -->
-      <div class="ananya-video-col">
-        <div class="video-sticky-wrapper">
-          <div class="video-label">
-            <span class="video-tag">Interview Recording</span>
-            <span class="video-note">Ananya Bala · Bennett University</span>
-          </div>
-          <!-- VIDEO PLACEHOLDER — replace src with your video file or embed -->
-          <div class="video-placeholder" id="videoPlaceholder">
-            <video
-              id="interviewVideo"
-              controls
-              preload="metadata"
-              poster="images/WhatsApp Image 2026-04-30 at 03.22.11.jpeg"
-              style="width:100%;display:block;background:#000;"
-            >
-              <!-- Add your video source here: -->
-              <source src="images/ananya-interview.mp4" type="video/mp4">
-              <!-- Fallback message if browser can't play -->
-              Your browser does not support HTML5 video.
-            </video>
-          </div>
-          <div class="video-caption">
-            <p>Rivaaz on stage.</p>
-          </div>
-          <!-- QUICK QUOTE CARDS below video -->
-          <div class="video-quote-stack">
-            <div class="vq-card" onclick="document.getElementById('interviewVideo').currentTime=0;document.getElementById('interviewVideo').play();">
-              <span class="vq-time">00:00</span>
-              <p class="vq-text">On the 16-year anchor</p>
-            </div>
-            <div class="vq-card">
-              <span class="vq-time">On presence</span>
-              <p class="vq-text">"We don't bring dancers to teach how to look good on camera..."</p>
-            </div>
-            <div class="vq-card">
-              <span class="vq-time">On the future</span>
-              <p class="vq-text">"Dance studios will become emergency infrastructure."</p>
-            </div>
-          </div>
-        </div>
-      </div><!-- end video col -->
-
-    </div><!-- end ananya-layout -->
+  <!-- NEXT / PREV NAV -->
+  <div class="an-next-row">
+    <button class="an-next-btn" onclick="nav('stories')">← All Stories</button>
+    <span style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);">Cycle 1 · Field Interview</span>
+    <button class="an-next-btn" onclick="nav('cycle1')">Cycle 1 Stories →</button>
   </div>
 
   <footer><div class="fi">
@@ -1175,8 +1507,22 @@ function nav(p){
   if(p!=='subscribe'){document.getElementById('subForm').style.display='flex';document.getElementById('succMsg').style.display='none';}
 }
 
-// ── SCROLL NAV ──
-window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+// ── READING PROGRESS ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',scrollY>60);
+  const bar=document.getElementById('readProgress');
+  if(bar){
+    const total=document.body.scrollHeight-window.innerHeight;
+    bar.style.width=(total>0?(scrollY/total*100):0)+'%';
+  }
+});
+
+// ── VIDEO PLAY ──
+function playVid(vid,ph){
+  const v=document.getElementById(vid);
+  const p=document.getElementById(ph);
+  if(v&&p){p.style.display='none';v.play();}
+}
 
 // ── FADE OBS ──
 function initObs(){
